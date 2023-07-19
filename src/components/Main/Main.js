@@ -1,14 +1,14 @@
-import './Main.css';
-import Header from '../Header/Header';
+import "./Main.css";
+import Header from "../Header/Header";
+import Promo from "../Promo/Promo";
 
 function Main() {
   return (
-    <div className='main'>
+    <div className="main">
       <Header />
-      
+      <Promo />
     </div>
   );
-
-};
+}
 
 export default Main;
