@@ -1,0 +1,46 @@
+.navigation {
+  display: flex;
+  gap: 30px;
+}
+
+.navigation__link {
+  text-decoration: none;
+  align-self: center;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+}
+
+.navigation__link_type_signup {
+  color: #FFFFFF;
+}
+
+.navigation__link_type_signin {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #000000;
+  width: 76px;
+  height: 32px;
+  background-color: #2BE080;
+  border-radius: 3px;
+}
+
+.navigation__link:hover {
+  opacity: .8;
+}
+
+@media screen and (max-width: 320px) {
+  .navigation {
+    gap: 14px;
+  }
+
+  .navigation__link {
+    font-size: 10px;
+  }
+
+  .navigation__link_type_signin {
+    width: 54px;
+    height: 26px;
+  }
+}
