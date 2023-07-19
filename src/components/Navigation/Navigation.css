@@ -26,10 +26,6 @@
   border-radius: 3px;
 }
 
-.navigation__link:hover {
-  opacity: .8;
-}
-
 @media screen and (max-width: 320px) {
   .navigation {
     gap: 14px;
