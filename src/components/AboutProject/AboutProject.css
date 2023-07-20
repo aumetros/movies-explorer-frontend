@@ -11,6 +11,7 @@
 }
 
 .project__line {
+  border-bottom: 1px #000 solid;
   margin-bottom: 70px;
 }
 

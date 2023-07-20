@@ -1,7 +1,3 @@
 @import url(./vendor/normalize.css);
 
 @import url(./vendor/fonts/fonts.css);
-
-@import url(./styles/hover-opacity/hover-opacity.css);
-@import url(./styles/line/type/line_type_main.css);
-@import url(./styles/section-title/section-title.css);

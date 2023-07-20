@@ -8,11 +8,12 @@ import Techs from "../Techs/Techs";
 function Main() {
   return (
     <div className="main">
-      {/* <Header />
+      <Header />
       <Promo />
       <NavTab />
-      <AboutProject /> */}
+      <AboutProject />
       <Techs />
+      
     </div>
   );
 }
