@@ -74,6 +74,9 @@
   }
 
   .techs__paragraph {
+    font-size: 12px;    
+    line-height: 18px;
+    letter-spacing: -0.48px;
     margin-bottom: 83px;
   }
 

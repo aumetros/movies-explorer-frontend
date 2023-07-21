@@ -53,19 +53,19 @@
   align-items: center;
 }
 
-.project__timeline-item_type_backend {  
+.project__timeline-item_type_backend {
   font-weight: 400;
-  background-color: #2BE080;  
+  background-color: #2be080;
 }
 
 .project__timeline-item_type_frontend {
   font-weight: 400;
-  background-color: #F2F2F2;  
+  background-color: #f2f2f2;
 }
 
 .project__timeline-item_type_caption {
   font-weight: 500;
-  color: #A0A0A0;
+  color: #a0a0a0;
 }
 
 @media screen and (max-width: 768px) {
@@ -74,8 +74,13 @@
   }
 
   .project__article {
-    gap: 30px;
+    gap: 37px;
     margin-bottom: 93px;
+  }
+
+  .project__paragraph {
+    font-size: 12px;
+    line-height: 18px;
   }
 
   .project__timeline-container {
@@ -89,7 +94,6 @@
   .project__subtitle {
     margin-bottom: 22px;
   }
-  
 }
 
 @media screen and (max-width: 600px) {
