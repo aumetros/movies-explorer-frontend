@@ -33,4 +33,8 @@
     gap: 24px;
     font-size: 11px;
   }
+
+  .navtab__link {
+    text-underline-offset: 2px;
+  }
 }

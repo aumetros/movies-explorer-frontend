@@ -123,10 +123,6 @@
     margin-bottom: 66px;
   }
 
-  .about-me__line_light {
-    margin-bottom: 20px;
-  }
-
   .about-me__name {
     font-size: 40px;
     line-height: 40px;
@@ -164,6 +160,10 @@
 @media screen and (max-width: 630px) {
   .about-me {
     padding: 70px 14px 0;
+  }
+
+  .about-me__line {
+    margin-bottom: 60px;
   }
 
   .about-me__title {

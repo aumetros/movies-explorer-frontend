@@ -124,6 +124,11 @@
     margin-bottom: 60px;
   }
 
+  .project__paragraph {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
   .project__subtitle {
     margin-bottom: 16px;
   }
