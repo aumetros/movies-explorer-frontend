@@ -10,6 +10,11 @@
   line-height: 20px;
 }
 
+.portfolio__line {
+  border-bottom: 1px #e8e8e8 solid;
+  margin-bottom: 20px;
+}
+
 .portfolio__link {
   display: flex;
   justify-content: space-between;
@@ -19,7 +24,7 @@
   font-weight: 400;
   line-height: 50px;
   letter-spacing: -1.2px;
-  margin-bottom: 19px;
+  margin-bottom: 9px;
 }
 
 .portfolio__link:last-of-type {
@@ -38,6 +43,7 @@
   font-size: 30px;
   font-weight: 400;
   line-height: 60px;
+  letter-spacing: 1px;
 }
 
 @media screen and (max-width: 768px) {
