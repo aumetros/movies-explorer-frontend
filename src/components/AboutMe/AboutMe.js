@@ -48,36 +48,6 @@ function AboutMe() {
           src={foto}
         />
       </div>
-      <h4 className="about-me__portfolio">Портфолио</h4>
-      <a
-        href="https://t.me/aumetros"
-        className="about-me__portfolio-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="about-me__portfolio-text">Статичный сайт</span>
-        <span className="about-me__portfolio-icon">↗</span>
-      </a>
-      <div className="about-me__line about-me__line_light"></div>
-      <a
-        href="https://t.me/aumetros"
-        className="about-me__portfolio-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="about-me__portfolio-text">Адаптивный сайт</span>
-        <span className="about-me__portfolio-icon">↗</span>
-      </a>
-      <div className="about-me__line about-me__line_light"></div>
-      <a
-        href="https://t.me/aumetros"
-        className="about-me__portfolio-link"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span className="about-me__portfolio-text">Одностраничное приложение</span>
-        <span className="about-me__portfolio-icon">↗</span>
-      </a>
     </section>
   );
 }
