@@ -5,7 +5,7 @@ function Header({ isMain }) {
   return (
     <header className={`header ${isMain ? "header_theme_dark" : "header_theme_light"}`}>
       <div className="header__logo"></div>
-      <Navigation />
+      <Navigation isMain={isMain} />
     </header>
   );
 }
