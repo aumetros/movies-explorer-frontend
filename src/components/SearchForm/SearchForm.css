@@ -1,0 +1,147 @@
+.search-form {
+  padding: 70px 70px 10px;
+}
+
+.search-form__container {
+  display: flex;
+  padding: 16px 30px 16px 18px;
+  background-color: #fdfdfd;
+  border-radius: 9px;
+  box-shadow: 0px 3px 14px 0px rgba(0, 0, 0, 0.08);
+  align-items: center;
+  position: relative;
+  margin-bottom: 69px;
+}
+
+.search-form__icon {
+  min-width: 34px;
+  min-height: 34px;
+  background-image: url(../../images/search-icon.svg);
+  background-size: 34px 34px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  margin-right: 10px;
+}
+
+.search-form__input {
+  flex-grow: 1;
+  border: 0;
+  border-radius: 6px;
+  margin-right: 21.35px;
+  height: 34px;
+  background-color: #fdfdfd;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.search-form__input::placeholder {
+  color: #a0a0a0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.search-form__input:focus {
+  outline: 1px #f0eded solid;
+}
+
+.search-form__button-submit {
+  min-width: 58.6px;
+  min-height: 34px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  background-color: #3456f3;
+  border-radius: 48px;
+  border: 0;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.search-form__vertical-line {
+  border-left: 1px solid #cbcbcb;
+  margin: 0 29px 0 19px;
+  height: 40px;
+}
+
+.search-form__shorts-text {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.search-form__line {
+  border-bottom: 1px #E8E8E8 solid;
+}
+
+.search-form__input-container {
+  display: flex;
+  flex-grow: 1;
+}
+
+.search-form__shorts-container {
+  display: flex;
+}
+
+@media screen and (max-width: 768px) {
+  .search-form {
+    padding: 80px 30px 10px;
+  }
+
+  .search-form__container {
+    padding-right: 20px;
+    margin-bottom: 109px;
+  }
+
+  .search-form__vertical-line {
+    margin: 0 20px 0 19px;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .search-form__icon {
+    display: none;
+  }
+
+  .search-form__vertical-line {
+    display: none;
+  }
+  .search-form__shorts-container {
+    position: absolute;
+    bottom: -64px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 150px;
+  }
+}
+
+
+@media screen and (max-width: 460px) {
+  .search-form {
+    padding: 80px 10px 10px;
+  }
+
+  .search-form__container {
+    padding: 18px 19px 19px 17px;
+    margin-bottom: 108px;
+  }
+
+  .search-form__input {
+    font-size: 14px;
+    margin-right: 0;
+  }
+
+  .search-form__input::placeholder {
+    font-size: 14px;
+  }
+
+  .search-form__shorts-text {
+    font-size: 11px;
+  }
+}
