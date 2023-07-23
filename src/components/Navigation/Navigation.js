@@ -58,6 +58,7 @@ function Navigation({ isMain }) {
             </NavLink>
             <div className="navigation__profile-icon"></div>
           </div>
+          <div className="navigation__mob-menu-icon"></div>
         </nav>
       );
     }

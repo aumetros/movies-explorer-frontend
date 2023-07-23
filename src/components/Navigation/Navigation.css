@@ -38,6 +38,7 @@
 .navigation__link_type_signin {
   display: flex;
   justify-content: center;
+  align-items: center;
   color: #000000;
   width: 76px;
   height: 32px;
@@ -67,21 +68,39 @@
 .navigation__profile-icon {
   width: 30px;
   height: 30px;
-  background-color: #F9F9F9;
+  background-color: #f9f9f9;
   border-radius: 6px;
-  background-image: url('../../images/profile-icon.svg');
+  background-image: url("../../images/profile-icon.svg");
   background-size: 10.4px 10.7px;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-@media screen and (max-width: 500px) {
+.navigation__mob-menu-icon {
+  display: none;
+  min-width: 44px;
+  min-height: 44px;
+  background-image: url(../../images/mob-menu-icon.svg);
+  background-size: 44px 44px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 768px) {
   .navigation__links {
     display: none;
   }
 
   .navigation__profile {
     display: none;
+  }
+
+  .navigation__mob-menu-icon {
+    display: block;
+  }
+
+  .navigation_type_movies {
+    justify-content: end;
   }
 }
 
@@ -97,5 +116,11 @@
   .navigation__link_type_signin {
     width: 54px;
     height: 26px;
+  }
+
+  .navigation__mob-menu-icon {
+    min-width: 38px;
+    min-height: 43px;
+    background-size: 38px 43px;
   }
 }

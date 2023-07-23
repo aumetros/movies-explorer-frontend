@@ -60,6 +60,11 @@
   font-size: 11px;
   font-weight: 500;
   line-height: 18px;
+  cursor: pointer;
+}
+
+.search-form__button-submit:hover {
+  opacity: .8;
 }
 
 .search-form__vertical-line {
@@ -81,10 +86,12 @@
 .search-form__input-container {
   display: flex;
   flex-grow: 1;
+  align-items: center;
 }
 
 .search-form__shorts-container {
   display: flex;
+  align-items: center;
 }
 
 @media screen and (max-width: 768px) {
@@ -98,7 +105,7 @@
   }
 
   .search-form__vertical-line {
-    margin: 0 20px 0 19px;
+    margin: 0 19px;
   }
 }
 

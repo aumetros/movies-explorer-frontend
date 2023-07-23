@@ -24,6 +24,7 @@
   margin-right: 14px;
   position: relative;
   transition: all 0.2s linear;
+  cursor: pointer;
 }
 
 .filter-checkbox__pseudo::after {
