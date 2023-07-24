@@ -66,6 +66,24 @@
   background-color: #2be080;
 }
 
+.movie-card__save-btn_saved:hover::after {
+  opacity: 0.8;
+} 
+
+.movie-card__delete-btn {
+  width: 16px;
+  height: 16px;
+  background-image: url(../../images/delete-icon.svg);
+  background-size: 16px 16px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+
+.movie-card__delete-btn:hover {
+  opacity: 0.8;
+}
+
 @media screen and (max-width: 768px) {
   .movie-card {
     width: 339px;

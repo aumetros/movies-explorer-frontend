@@ -14,10 +14,19 @@
   justify-content: center;
 }
 
+.movies-cardlist__container_saved {
+  justify-content: flex-start;
+  padding-bottom: 150px;
+}
+
 .movie-cardlist__loader {
   display: flex;
   justify-content: center;
   padding-top: 81px;
+}
+
+.movie-cardlist__loader_hide {
+  display: none;
 }
 
 .movie-cardlist__loader-btn {
@@ -48,6 +57,11 @@
     grid-template-columns: repeat(auto-fit, 339px);
     row-gap: 36px;
     column-gap: 30px;
+  }
+
+  .movies-cardlist__container_saved {
+    padding-bottom: 140px;
+    justify-content: center;
   }
 }
 
