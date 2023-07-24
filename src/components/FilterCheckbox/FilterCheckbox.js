@@ -4,10 +4,10 @@ function FilterCheckbox() {
   return (
     <label
       className="filter-checkbox__label"
-      for="shorts"
+      htmlFor="shorts"
     >
       <input type="checkbox" className="filter-checkbox__input" name="shorts" id="shorts" value={true}></input>
-      <span class="filter-checkbox__pseudo"></span>
+      <span className="filter-checkbox__pseudo"></span>
     </label>
   );
 }
