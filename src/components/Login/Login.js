@@ -17,7 +17,7 @@ function Login() {
           type="email"
           name="email"
           id="email"
-          value={"pochta@yandex.ru"}
+          defaultValue="pochta@yandex.ru"
         />
         <span className="login__error"></span>
 
@@ -29,7 +29,7 @@ function Login() {
           type="password"
           name="password"
           id="password"
-          value={""}
+          defaultValue=""
         />
         <span className="login__error"></span>
       </Form>

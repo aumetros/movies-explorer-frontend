@@ -21,7 +21,7 @@ function Register() {
           type="text"
           name="name"
           id="name"
-          value={"Алексей"}
+          defaultValue={"Алексей"}
         />
         <span className="register__error"></span>
 
@@ -33,7 +33,7 @@ function Register() {
           type="email"
           name="email"
           id="email"
-          value={"pochta@yandex.ru"}
+          defaultValue={"pochta@yandex.ru"}
         />
         <span className="register__error"></span>
 
@@ -45,7 +45,7 @@ function Register() {
           type="password"
           name="password"
           id="password"
-          value={"Алексей"}
+          defaultValue={"Алексей"}
         />
         <span className="register__error">Что-то пошло не так...</span>
       </Form>

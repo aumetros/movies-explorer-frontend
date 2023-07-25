@@ -17,7 +17,7 @@ function Profile() {
             name="name"
             id="name"
             placeholder="Введите своё имя"
-            value={"Алексей"}
+            defaultValue={"Алексей"}
           />
         </div>
         <div className="profile__line"></div>
@@ -31,7 +31,7 @@ function Profile() {
             name="email"
             id="email"
             placeholder="Введите email"
-            value={"pochta@yandex.ru"}
+            defaultValue={"pochta@yandex.ru"}
           />
         </div>
       </Form>
