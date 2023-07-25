@@ -13,12 +13,12 @@ function App() {
     <div className="app">
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="/movies" element={<Movies />}/>
-        <Route path="/saved-movies" element={<SavedMovies />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/signup" element={<Register />}/>
-        <Route path="/signin" element={<Login />}/>
-        <Route path="*" element={<NotFound />}/>
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/saved-movies" element={<SavedMovies />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

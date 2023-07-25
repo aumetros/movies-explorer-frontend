@@ -6,7 +6,12 @@ function Profile() {
   return (
     <section className="profile">
       <Header />
-      <Form title="Привет, Алексей!" name="profile" submitText="Редактировать" isLoggedIn={true}>
+      <Form
+        title="Привет, Алексей!"
+        name="profile"
+        submitText="Редактировать"
+        isLoggedIn={true}
+      >
         <div className="profile__input-container">
           <label className="profile__input-label" htmlFor="name">
             Имя

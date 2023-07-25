@@ -18,16 +18,15 @@ function MoviesCard({ photo, tab, mob, savedMovies }) {
         ></div>
       );
     } else {
-      return (
-        <div className="movie-card__delete-btn"></div>
-      )
+      return <div className="movie-card__delete-btn"></div>;
     }
   }
 
   return (
     <li
       className={`movie-card ${tab && "movie-card_hide_tab"} ${
-        mob && "movie-card_hide_mob"} ${(savedMovies && mob) && "movie-card_hide_mob"}`}
+        mob && "movie-card_hide_mob"
+      } ${savedMovies && mob && "movie-card_hide_mob"}`}
     >
       <img className="movie-card__photo" src={photo} alt="33 слова о дизайне" />
       <div className="movie-card__container">

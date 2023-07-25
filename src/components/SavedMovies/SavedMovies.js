@@ -16,7 +16,7 @@ function SavedMovies() {
       <MoviesCardList savedMovies={true}>
         <MoviesCard photo={photo1} savedMovies={true} />
         <MoviesCard photo={photo2} savedMovies={true} />
-        <MoviesCard photo={photo3} savedMovies={true} mob={true}/>
+        <MoviesCard photo={photo3} savedMovies={true} mob={true} />
       </MoviesCardList>
       <Footer />
     </div>

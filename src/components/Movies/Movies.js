@@ -23,7 +23,7 @@ import photo16 from "../../images/card-photo-16.png";
 
 function Movies() {
   return (
-    <div className="movies">
+    <section className="movies">
       <Header />
       <SearchForm />
       <MoviesCardList>
@@ -45,7 +45,7 @@ function Movies() {
         <MoviesCard photo={photo16} tab={"hide"} />
       </MoviesCardList>
       <Footer movies={true} />
-    </div>
+    </section>
   );
 }
 

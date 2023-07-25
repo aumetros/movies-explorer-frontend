@@ -4,7 +4,6 @@ import { Link, NavLink } from "react-router-dom";
 import MobileMenu from "../MobileMenu/MobileMenu";
 
 function Navigation({ isMain }) {
-
   const [isMobMenuClicked, setIsMobMenuClicked] = React.useState(false);
 
   function handleMobMenuClick() {
@@ -67,8 +66,11 @@ function Navigation({ isMain }) {
             </NavLink>
             <div className="navigation__profile-icon"></div>
           </div>
-          <div className="navigation__mob-menu-icon" onClick={handleMobMenuClick}></div>
-          {isMobMenuClicked && <MobileMenu onClose={handleMobMenuClick}/>}
+          <div
+            className="navigation__mob-menu-icon"
+            onClick={handleMobMenuClick}
+          ></div>
+          {isMobMenuClicked && <MobileMenu onClose={handleMobMenuClick} />}
         </nav>
       );
     }
