@@ -1,6 +1,7 @@
 .navigation {
   display: flex;
   gap: 30px;
+  position: relative;
 }
 
 .navigation_type_movies {
