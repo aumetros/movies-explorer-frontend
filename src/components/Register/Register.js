@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 function Register() {
   return (
     <section className="register">
-      <div className="register__logo"></div>
+      <Link to="/" className="register__logo-link">
+        <div className="register__logo"></div>
+      </Link>
       <Form
         title="Добро пожаловать!"
         name="register"
@@ -21,7 +23,7 @@ function Register() {
           id="name"
           value={"Алексей"}
         />
-        <span className="register__error">.</span>
+        <span className="register__error"></span>
 
         <label className="register__input-label" htmlFor="email">
           E-mail
