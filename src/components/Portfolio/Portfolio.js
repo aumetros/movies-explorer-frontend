@@ -5,7 +5,7 @@ function Portfolio() {
     <section className="portfolio">
       <h2 className="portfolio__title">Портфолио</h2>
       <a
-        href="https://t.me/aumetros"
+        href="https://github.com/aumetros/russian-travel"
         className="portfolio__link"
         target="_blank"
         rel="noopener noreferrer"
@@ -15,7 +15,7 @@ function Portfolio() {
       </a>
       <div className="portfolio__line"></div>
       <a
-        href="https://t.me/aumetros"
+        href="https://github.com/aumetros/snp-intern"
         className="portfolio__link"
         target="_blank"
         rel="noopener noreferrer"
@@ -25,7 +25,7 @@ function Portfolio() {
       </a>
       <div className="portfolio__line"></div>
       <a
-        href="https://t.me/aumetros"
+        href="https://github.com/aumetros/snp-todo"
         className="portfolio__link"
         target="_blank"
         rel="noopener noreferrer"

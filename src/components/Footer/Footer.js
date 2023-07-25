@@ -12,7 +12,7 @@ function Footer({ movies }) {
         <ul className="footer__links">
           <li>
             <a
-              href="www.test.ru"
+              href="https://practicum.yandex.ru"
               className="footer__link"
               target="_blank"
               rel="noopener noreferrer"
@@ -22,7 +22,7 @@ function Footer({ movies }) {
           </li>
           <li>
             <a
-              href="www.test.ru"
+              href="https://github.com/aumetros"
               className="footer__link"
               target="_blank"
               rel="noopener noreferrer"
