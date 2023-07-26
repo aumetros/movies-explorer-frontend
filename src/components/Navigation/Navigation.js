@@ -62,14 +62,15 @@ function Navigation({ isMain }) {
               to="/profile"
               className="navigation__link navigation__link_type_profile"
             >
-              Аккаунт
+              <span>Аккаунт</span>
+              <div className="navigation__profile-icon"></div>
             </NavLink>
-            <div className="navigation__profile-icon"></div>
           </div>
-          <div
+          <button
             className="navigation__mob-menu-icon"
+            type="button"
             onClick={handleMobMenuClick}
-          ></div>
+          ></button>
           {isMobMenuClicked && <MobileMenu onClose={handleMobMenuClick} />}
         </nav>
       );

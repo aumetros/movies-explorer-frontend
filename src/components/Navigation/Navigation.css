@@ -26,6 +26,9 @@
 
 .navigation__link_type_profile {
   font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 13px;
 }
 
 .navigation__link_type_active {
@@ -61,8 +64,6 @@
 }
 
 .navigation__profile {
-  display: flex;
-  gap: 13px;
   align-self: center;
 }
 
@@ -85,6 +86,9 @@
   background-size: 44px 44px;
   background-position: center;
   background-repeat: no-repeat;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
 @media screen and (max-width: 768px) {

@@ -5,7 +5,7 @@ function MobileMenu({ onClose }) {
   return (
     <aside className="mobile-menu">
       <div className="mobile-menu__container">
-        <div className="mobile-menu__close-btn" onClick={onClose}></div>
+        <button className="mobile-menu__close-btn" onClick={onClose}></button>
         <ul className="mobile-menu__navigation">
           <li>
             <NavLink

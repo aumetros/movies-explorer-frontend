@@ -11,7 +11,7 @@ function MoviesCardList({ children, savedMovies }) {
         {children}
       </ul>
       <div className={`movie-cardlist__loader ${savedMovies && "movie-cardlist__loader_hide"}`}>
-        <button className="movie-cardlist__loader-btn">Ещё</button>
+        <button type="button" className="movie-cardlist__loader-btn">Ещё</button>
       </div>
     </section>
   );

@@ -28,6 +28,9 @@
   background-repeat: no-repeat;
   align-self: end;
   margin: 22.44px 22.44px 105.44px 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
 }
 
 .mobile-menu__navigation {

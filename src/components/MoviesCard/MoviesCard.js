@@ -10,15 +10,16 @@ function MoviesCard({ photo, tab, mob, savedMovies }) {
   function handleTypeButton() {
     if (!savedMovies) {
       return (
-        <div
+        <button
           className={`movie-card__save-btn ${
             isSavedCliked && "movie-card__save-btn_saved"
           }`}
+          type="button"
           onClick={handleSaveClick}
-        ></div>
+        ></button>
       );
     } else {
-      return <div className="movie-card__delete-btn"></div>;
+      return <button type="button" className="movie-card__delete-btn"></button>;
     }
   }
 
@@ -31,7 +32,7 @@ function MoviesCard({ photo, tab, mob, savedMovies }) {
       <img className="movie-card__photo" src={photo} alt="33 слова о дизайне" />
       <div className="movie-card__container">
         <div className="movie-card__info">
-          <p className="movie-card__title">33 слова о дизайне</p>
+          <h2 className="movie-card__title">33 слова о дизайне</h2>
           <span className="movie-card__duration">1ч42м</span>
         </div>
         {handleTypeButton()}

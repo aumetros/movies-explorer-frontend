@@ -6,11 +6,11 @@ function NotFound() {
 
   return (
     <main className="notfound">
-      <h2 className="notfound__title">404</h2>
+      <h1 className="notfound__title">404</h1>
       <p className="notfound__subtitle">Страница не найдена</p>
-      <span className="notfound__back" onClick={() => navigate(-1)}>
+      <button type="button" className="notfound__back" onClick={() => navigate(-1)}>
         Назад
-      </span>
+      </button>
     </main>
   );
 }
