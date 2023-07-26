@@ -31,6 +31,11 @@
   border: 0;
   padding: 0;
   background-color: transparent;
+  cursor: pointer;
+}
+
+.mobile-menu__close-btn:hover {
+  opacity: 0.7;
 }
 
 .mobile-menu__navigation {
@@ -49,6 +54,11 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 22px;
+  cursor: pointer;
+}
+
+.mobile-menu__link:hover {
+  opacity: 0.7;
 }
 
 .mobile-menu__link_active {
@@ -63,6 +73,11 @@
   gap: 13px;
   margin-top: auto;
   margin-bottom: 91px;
+  cursor: pointer;
+}
+
+.mobile-menu__profile:hover {
+  opacity: 0.7;
 }
 
 .mobile-menu__link_type_profile {
