@@ -18,6 +18,7 @@ function Login() {
           name="email"
           id="email"
           defaultValue="pochta@yandex.ru"
+          placeholder="Введите почту"
         />
         <span className="login__error"></span>
 
@@ -30,6 +31,7 @@ function Login() {
           name="password"
           id="password"
           defaultValue=""
+          placeholder="Введите пароль"
         />
         <span className="login__error"></span>
       </Form>

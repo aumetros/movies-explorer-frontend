@@ -22,6 +22,7 @@ function Register() {
           name="name"
           id="name"
           defaultValue={"Алексей"}
+          placeholder="Введите своё имя"
         />
         <span className="register__error"></span>
 
@@ -34,6 +35,7 @@ function Register() {
           name="email"
           id="email"
           defaultValue={"pochta@yandex.ru"}
+          placeholder="Введите email"
         />
         <span className="register__error"></span>
 
@@ -46,6 +48,7 @@ function Register() {
           name="password"
           id="password"
           defaultValue={"Алексей"}
+          placeholder="Введите пароль"
         />
         <span className="register__error">Что-то пошло не так...</span>
       </Form>
