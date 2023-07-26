@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Login() {
   return (
-    <section className="login">
+    <main className="login">
       <Link to="/" className="login__logo-link">
         <div className="login__logo"></div>
       </Link>
@@ -40,7 +40,7 @@ function Login() {
           Регистрация
         </Link>
       </div>
-    </section>
+    </main>
   );
 }
 

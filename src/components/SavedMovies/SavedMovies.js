@@ -10,16 +10,18 @@ import photo3 from "../../images/card-photo-3.png";
 
 function SavedMovies() {
   return (
-    <div className="saved-movies">
+    <section className="saved-movies">
       <Header />
-      <SearchForm />
-      <MoviesCardList savedMovies={true}>
-        <MoviesCard photo={photo1} savedMovies={true} />
-        <MoviesCard photo={photo2} savedMovies={true} />
-        <MoviesCard photo={photo3} savedMovies={true} mob={true} />
-      </MoviesCardList>
+      <main>
+        <SearchForm />
+        <MoviesCardList savedMovies={true}>
+          <MoviesCard photo={photo1} savedMovies={true} />
+          <MoviesCard photo={photo2} savedMovies={true} />
+          <MoviesCard photo={photo3} savedMovies={true} mob={true} />
+        </MoviesCardList>
+      </main>
       <Footer />
-    </div>
+    </section>
   );
 }
 

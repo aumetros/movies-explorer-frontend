@@ -25,25 +25,27 @@ function Movies() {
   return (
     <section className="movies">
       <Header />
-      <SearchForm />
-      <MoviesCardList>
-        <MoviesCard photo={photo1} />
-        <MoviesCard photo={photo2} />
-        <MoviesCard photo={photo3} />
-        <MoviesCard photo={photo4} />
-        <MoviesCard photo={photo5} />
-        <MoviesCard photo={photo6} mob={"hide"} />
-        <MoviesCard photo={photo7} mob={"hide"} />
-        <MoviesCard photo={photo8} mob={"hide"} />
-        <MoviesCard photo={photo9} tab={"hide"} />
-        <MoviesCard photo={photo10} tab={"hide"} />
-        <MoviesCard photo={photo11} tab={"hide"} />
-        <MoviesCard photo={photo12} tab={"hide"} />
-        <MoviesCard photo={photo13} tab={"hide"} />
-        <MoviesCard photo={photo14} tab={"hide"} />
-        <MoviesCard photo={photo15} tab={"hide"} />
-        <MoviesCard photo={photo16} tab={"hide"} />
-      </MoviesCardList>
+      <main>
+        <SearchForm />
+        <MoviesCardList>
+          <MoviesCard photo={photo1} />
+          <MoviesCard photo={photo2} />
+          <MoviesCard photo={photo3} />
+          <MoviesCard photo={photo4} />
+          <MoviesCard photo={photo5} />
+          <MoviesCard photo={photo6} mob={"hide"} />
+          <MoviesCard photo={photo7} mob={"hide"} />
+          <MoviesCard photo={photo8} mob={"hide"} />
+          <MoviesCard photo={photo9} tab={"hide"} />
+          <MoviesCard photo={photo10} tab={"hide"} />
+          <MoviesCard photo={photo11} tab={"hide"} />
+          <MoviesCard photo={photo12} tab={"hide"} />
+          <MoviesCard photo={photo13} tab={"hide"} />
+          <MoviesCard photo={photo14} tab={"hide"} />
+          <MoviesCard photo={photo15} tab={"hide"} />
+          <MoviesCard photo={photo16} tab={"hide"} />
+        </MoviesCardList>
+      </main>
       <Footer movies={true} />
     </section>
   );
