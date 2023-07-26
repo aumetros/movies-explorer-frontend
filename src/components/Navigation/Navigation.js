@@ -71,7 +71,7 @@ function Navigation({ isMain }) {
             type="button"
             onClick={handleMobMenuClick}
           ></button>
-          {isMobMenuClicked && <MobileMenu onClose={handleMobMenuClick} />}
+          <MobileMenu isOpen={isMobMenuClicked} onClose={handleMobMenuClick} />
         </nav>
       );
     }
