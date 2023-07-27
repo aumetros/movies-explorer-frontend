@@ -1,8 +1,19 @@
 import "./Register.css";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/UseForm";
 
 function Register() {
+  const { values, handleChange } = useForm();
+
+  function handleRegister(event) {
+    event.preventDefault();
+    console.log(values.registerName);
+    console.log(values.registerEmail);
+    console.log(values.registerPassword);
+    event.target.reset();
+  }
+
   return (
     <main className="register">
       <Link to="/" className="register__logo-link">
@@ -12,43 +23,47 @@ function Register() {
         title="Добро пожаловать!"
         name="register"
         submitText="Зарегистрироваться"
+        onSubmit={handleRegister}
       >
-        <label className="register__input-label" htmlFor="name">
+        <label className="register__input-label" htmlFor="registerName">
           Имя
         </label>
         <input
           className="register__input"
           type="text"
-          name="name"
-          id="name"
-          defaultValue={"Алексей"}
+          name="registerName"
+          id="registerName"
           placeholder="Введите своё имя"
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="register__error"></span>
 
-        <label className="register__input-label" htmlFor="email">
+        <label className="register__input-label" htmlFor="registerEmail">
           E-mail
         </label>
         <input
           className="register__input"
           type="email"
-          name="email"
-          id="email"
-          defaultValue={"pochta@yandex.ru"}
+          name="registerEmail"
+          id="registerEmail"
           placeholder="Введите email"
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="register__error"></span>
 
-        <label className="register__input-label" htmlFor="password">
+        <label className="register__input-label" htmlFor="registerPassword">
           Пароль
         </label>
         <input
           className="register__input register__input_invalid"
           type="password"
-          name="password"
-          id="password"
-          defaultValue={"Алексей"}
+          name="registerPassword"
+          id="registerPassword"
           placeholder="Введите пароль"
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="register__error">Что-то пошло не так...</span>
       </Form>

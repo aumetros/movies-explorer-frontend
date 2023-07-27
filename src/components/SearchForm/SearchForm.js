@@ -4,7 +4,7 @@ import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
 function SearchForm() {
-  const { values, handleChange, setValues } = useForm();
+  const { values, handleChange } = useForm();
   const [isShortsChecked, setIsShortsChecked] = React.useState(true);
 
   function handleChangeShorts() {

@@ -1,37 +1,54 @@
 import "./Login.css";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
+import { useForm } from "../../hooks/UseForm";
 
 function Login() {
+  const { values, handleChange } = useForm();
+
+  function handleLogin(event) {
+    event.preventDefault();
+    console.log(values.loginEmail);
+    console.log(values.loginPassword);
+    event.target.reset();
+  }
+
   return (
     <main className="login">
       <Link to="/" className="login__logo-link">
         <div className="login__logo"></div>
       </Link>
-      <Form title="Рады видеть!" name="login" submitText="Войти">
-        <label className="login__input-label" htmlFor="email">
+      <Form
+        title="Рады видеть!"
+        name="login"
+        submitText="Войти"
+        onSubmit={handleLogin}
+      >
+        <label className="login__input-label" htmlFor="loginEmail">
           E-mail
         </label>
         <input
           className="login__input"
           type="email"
-          name="email"
-          id="email"
-          defaultValue="pochta@yandex.ru"
+          name="loginEmail"
+          id="loginEmail"
           placeholder="Введите почту"
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="login__error"></span>
 
-        <label className="login__input-label" htmlFor="password">
+        <label className="login__input-label" htmlFor="loginPassword">
           Пароль
         </label>
         <input
           className="login__input"
           type="password"
-          name="password"
-          id="password"
-          defaultValue=""
+          name="loginPassword"
+          id="loginPassword"
           placeholder="Введите пароль"
+          value={values.name}
+          onChange={handleChange}
         />
         <span className="login__error"></span>
       </Form>

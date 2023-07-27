@@ -1,8 +1,18 @@
 import Form from "../Form/Form";
 import Header from "../Header/Header";
 import "./Profile.css";
+import { useForm } from "../../hooks/UseForm";
 
 function Profile() {
+  const { values, handleChange } = useForm();
+
+  function handleProfileEdit(event) {
+    event.preventDefault();
+    console.log(values.editName);
+    console.log(values.editEmail);
+    event.target.reset();
+  }
+
   return (
     <section className="profile">
       <Header />
@@ -12,32 +22,35 @@ function Profile() {
           name="profile"
           submitText="Редактировать"
           isLoggedIn={true}
+          onSubmit={handleProfileEdit}
         >
           <div className="profile__input-container">
-            <label className="profile__input-label" htmlFor="name">
+            <label className="profile__input-label" htmlFor="editName">
               Имя
             </label>
             <input
               className="profile__input"
               type="text"
-              name="name"
-              id="name"
+              name="editName"
+              id="editName"
               placeholder="Введите своё имя"
-              defaultValue={"Алексей"}
+              value={values.name}
+              onChange={handleChange}
             />
           </div>
           <div className="profile__line"></div>
           <div className="profile__input-container">
-            <label className="profile__input-label" htmlFor="email">
+            <label className="profile__input-label" htmlFor="editEmail">
               E-mail
             </label>
             <input
               type="text"
               className="profile__input"
-              name="email"
-              id="email"
+              name="editEmail"
+              id="editEmail"
               placeholder="Введите email"
-              defaultValue={"pochta@yandex.ru"}
+              value={values.name}
+              onChange={handleChange}
             />
           </div>
         </Form>
