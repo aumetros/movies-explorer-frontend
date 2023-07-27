@@ -15,7 +15,7 @@ export const validators = {
       return value === "";
     },
     email: (value) => {
-      const regex = new RegExp("/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i");
+      const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
       return !regex.test(value);
     },
   },
@@ -23,27 +23,19 @@ export const validators = {
     required: (value) => {
       return value === "";
     },
-    notCyrillic: (value) => {
-      const regex = new RegExp("/^[\u0400-\u04FF]+$/");
-      return regex.test(value);
-    },
   },
   loginEmail: {
     required: (value) => {
       return value === "";
     },
     email: (value) => {
-      const regex = new RegExp("/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i");
+      const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
       return !regex.test(value);
     },
   },  
   loginPassword: {
     required: (value) => {
       return value === "";
-    },
-    notCyrillic: (value) => {
-      const regex = new RegExp("/^[\u0400-\u04FF]+$/");
-      return regex.test(value);
     },
   },
 };
