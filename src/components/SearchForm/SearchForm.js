@@ -1,21 +1,44 @@
-import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import "./SearchForm.css";
+import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
+import { useForm } from "../../hooks/UseForm";
+import React from "react";
 
 function SearchForm() {
+  const { values, handleChange } = useForm();
+  const [isShortsChecked, setIsShortsChecked] = React.useState(true);
+
+  function handleChangeShorts() {
+    setIsShortsChecked(!isShortsChecked);
+  }
+
+  function handleSearchSubmit(event) {
+    event.preventDefault();
+    console.log(values.search);
+    console.log(isShortsChecked);
+  }
+
   return (
     <section>
-      <form className="search-form">
+      <form className="search-form" onSubmit={handleSearchSubmit}>
         <div className="search-form__container">
           <div className="search-form__icon"></div>
           <div className="search-form__input-container">
-            <input className="search-form__input" placeholder="Фильм" required/>
+            <input
+              type="text"
+              className="search-form__input"
+              placeholder="Фильм"
+              name="search"
+              value={values.name}
+              onChange={handleChange}
+              required
+            />
             <button type="submit" className="search-form__button-submit">
               Найти
             </button>
           </div>
           <div className="search-form__vertical-line"></div>
           <div className="search-form__shorts-container">
-            <FilterCheckbox />
+            <FilterCheckbox onChange={handleChangeShorts}/>
             <span className="search-form__shorts-text">Короткометражки</span>
           </div>
         </div>

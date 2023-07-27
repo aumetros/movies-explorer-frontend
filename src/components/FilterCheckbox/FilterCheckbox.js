@@ -1,6 +1,6 @@
 import "./FilterCheckbox.css";
 
-function FilterCheckbox() {
+function FilterCheckbox({ onChange }) {
   return (
     <label className="filter-checkbox__label" htmlFor="shorts">
       <input
@@ -8,7 +8,7 @@ function FilterCheckbox() {
         className="filter-checkbox__input"
         name="shorts"
         id="shorts"
-        value={true}
+        onChange={onChange}
       ></input>
       <span className="filter-checkbox__pseudo"></span>
     </label>
