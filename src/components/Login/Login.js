@@ -11,10 +11,15 @@ function Login() {
   const { errors, setErrors } = useFormErrors();
 
   const loginEmailResult = useValidation(values.loginEmail, "loginEmail");
-  const loginPasswordResult = useValidation(values.loginPassword, "loginPassword");
+  const loginPasswordResult = useValidation(
+    values.loginPassword,
+    "loginPassword"
+  );
 
   const isLoginEmailInvalid = Object.values(errors.loginEmail).some(Boolean);
-  const isLoginPasswordInvalid = Object.values(errors.loginPassword).some(Boolean);
+  const isLoginPasswordInvalid = Object.values(errors.loginPassword).some(
+    Boolean
+  );
   const isFormInvalid = isLoginEmailInvalid || isLoginPasswordInvalid;
 
   const [visibilityValidate, setVisibilityValidate] = React.useState({
@@ -23,11 +28,15 @@ function Login() {
   });
 
   const loginEmailClassName = `login__input ${
-    visibilityValidate.loginEmail && isLoginEmailInvalid && "login__input_invalid"
+    visibilityValidate.loginEmail &&
+    isLoginEmailInvalid &&
+    "login__input_invalid"
   }`;
 
   const loginPasswordClassName = `login__input ${
-    visibilityValidate.loginPassword && isLoginPasswordInvalid && "login__input_invalid"
+    visibilityValidate.loginPassword &&
+    isLoginPasswordInvalid &&
+    "login__input_invalid"
   }`;
 
   function handleFocusInput(event) {
@@ -45,8 +54,12 @@ function Login() {
     if (visibilityValidate.loginEmail) {
       return (
         <>
-          {errors.loginEmail.required && errors.loginEmail.email && "Заполните это поле."}
-          {!errors.loginEmail.required && errors.loginEmail.email && "Это не похоже на email."}
+          {errors.loginEmail.required &&
+            errors.loginEmail.email &&
+            "Заполните это поле."}
+          {!errors.loginEmail.required &&
+            errors.loginEmail.email &&
+            "Это не похоже на email."}
         </>
       );
     }
@@ -54,11 +67,7 @@ function Login() {
 
   function showLoginPasswordErrors() {
     if (visibilityValidate.loginPassword) {
-      return (
-        <>
-          {errors.loginPassword.required && "Заполните это поле."}
-        </>
-      )
+      return <>{errors.loginPassword.required && "Заполните это поле."}</>;
     }
   }
 
@@ -94,9 +103,7 @@ function Login() {
           onChange={handleChange}
           onFocus={handleFocusInput}
         />
-        <span className="login__error">
-          {showLoginEmailErrors()}
-        </span>
+        <span className="login__error">{showLoginEmailErrors()}</span>
 
         <label className="login__input-label" htmlFor="loginPassword">
           Пароль
@@ -111,9 +118,7 @@ function Login() {
           onChange={handleChange}
           onFocus={handleFocusInput}
         />
-        <span className="login__error">
-          {showLoginPasswordErrors()}
-        </span>
+        <span className="login__error">{showLoginPasswordErrors()}</span>
       </Form>
 
       <div className="login__link-container">

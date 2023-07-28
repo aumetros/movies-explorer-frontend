@@ -60,7 +60,6 @@
   }
 
   .movies-cardlist__container_saved {
-    padding-bottom: 140px;
     justify-content: center;
   }
 }
@@ -73,6 +72,10 @@
   .movies-cardlist__container {
     grid-template-columns: repeat(auto-fit, 300px);
     row-gap: 20px;
+  }
+
+  .movies-cardlist__container_saved {
+     padding-bottom: 141px;
   }
 
   .movie-cardlist__loader-btn {
