@@ -13,7 +13,7 @@ export function useValidation(value, key) {
       })
       .reduce((acc, el) => ({ ...acc, ...el }), {});
 
-      setValidationResult(result)
+      setValidationResult(result);
 
   }, [value, key, setValidationResult]);
 

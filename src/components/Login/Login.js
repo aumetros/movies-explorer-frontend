@@ -7,7 +7,7 @@ import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
 function Login() {
-  const { values, handleChange } = useForm();
+  const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
 
   const loginEmailResult = useValidation(values.loginEmail, "loginEmail");
@@ -77,6 +77,13 @@ function Login() {
     console.log(values.loginPassword);
     event.target.reset();
   }
+
+  React.useEffect(() => {
+    setValues({
+      loginEmail: "",
+      loginPassword: "",
+    });
+  }, [setValues]);
 
   return (
     <main className="login">
