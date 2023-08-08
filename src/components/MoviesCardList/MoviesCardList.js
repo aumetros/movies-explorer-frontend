@@ -6,10 +6,35 @@ function MoviesCardList({ movies, savedMovies }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
   const [moviesPerLoad, setMoviesPerLoad] = React.useState(4);
+  const [width, setWidth] = React.useState(window.innerWidth);
 
   function showMoreMovies() {
     setMoviesPerPage((prevValue) => prevValue + moviesPerLoad);
   }
+
+  function handleResizeWindow() {
+    setWidth(window.innerWidth);
+  }
+
+  React.useEffect(() => {
+    window.addEventListener("resize", handleResizeWindow);
+    return () => {
+      window.removeEventListener("resize", handleResizeWindow);
+    };
+  }, []);
+
+  React.useEffect(() => {
+    if (width > 768) {
+      setMoviesPerPage(16);
+      setMoviesPerLoad(4);
+    } else if (width <= 768 && width > 480) {
+      setMoviesPerPage(8);
+      setMoviesPerLoad(2);
+    } else if (width <= 480) {
+      setMoviesPerPage(5);
+      setMoviesPerLoad(2);
+    }
+  }, [width]);
 
   React.useEffect(() => {
     if (movies.length <= moviesPerPage) {
@@ -30,11 +55,7 @@ function MoviesCardList({ movies, savedMovies }) {
           return <MoviesCard key={movie.id} movie={movie} />;
         })}
       </ul>
-      <div
-        className={`movie-cardlist__loader ${
-          savedMovies && "movie-cardlist__loader_hide"
-        }`}
-      >
+      <div className="movie-cardlist__loader">
         {isShowMore && (
           <button
             type="button"
