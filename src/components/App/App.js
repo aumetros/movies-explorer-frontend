@@ -1,4 +1,5 @@
 import "./App.css";
+import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "../Layout/Layout";
 import Main from "../Main/Main";
@@ -9,11 +10,13 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import { getMovies } from "../../utils/MoviesApi";
-import React from "react";
+import Modal from "../Modal/Modal";
 
 function App() {
   const [movies, setMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [modalMessage, setModalMessage] = React.useState('');
 
   function handleGetMovies() {
     setIsLoading(true);
@@ -28,6 +31,16 @@ function App() {
         setIsLoading(false);
       });
   }
+
+  function handleOpenModal(msg) {
+    setModalMessage(msg);
+    setIsOpenModal(!isOpenModal);
+  }
+
+  function handleCloseModal() {
+    setIsOpenModal(false);
+  }
+
   return (
     <div className="app">
       <Layout>
@@ -36,7 +49,12 @@ function App() {
           <Route
             path="/movies"
             element={
-              <Movies isLoading={isLoading} onGetMovies={handleGetMovies} movies={movies} />
+              <Movies
+                isLoading={isLoading}
+                onGetMovies={handleGetMovies}
+                movies={movies}
+                onError={handleOpenModal}
+              />
             }
           />
           <Route path="/saved-movies" element={<SavedMovies />} />
@@ -46,6 +64,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      <Modal isOpen={isOpenModal} onClose={handleCloseModal} modalMessage={modalMessage}/>
     </div>
   );
 }

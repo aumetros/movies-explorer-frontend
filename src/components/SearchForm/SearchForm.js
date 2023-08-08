@@ -3,8 +3,8 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
-function SearchForm({ onSubmit }) {
-  const { values, handleChange } = useForm();
+function SearchForm({ onSubmit, onError }) {
+  const { values, handleChange, setValues } = useForm();
   const [isShortsChecked, setIsShortsChecked] = React.useState(true);
 
   function handleChangeShorts() {
@@ -13,8 +13,13 @@ function SearchForm({ onSubmit }) {
 
   function handleSearchSubmit(event) {
     event.preventDefault();
-    onSubmit();
-    event.target.reset();
+    if (values.searchMovies) {
+      onSubmit();
+      setValues({ searchMovies: "" });
+      event.target.reset();
+    } else {
+      onError("Нужно ввести ключевое слово");
+    }
   }
 
   return (
@@ -27,10 +32,10 @@ function SearchForm({ onSubmit }) {
               type="text"
               className="search-form__input"
               placeholder="Фильм"
-              name="search"
+              name="searchMovies"
               value={values.name}
               onChange={handleChange}
-              required
+              noValidate
             />
             <button type="submit" className="search-form__button-submit">
               Найти
@@ -38,7 +43,7 @@ function SearchForm({ onSubmit }) {
           </div>
           <div className="search-form__vertical-line"></div>
           <div className="search-form__shorts-container">
-            <FilterCheckbox onChange={handleChangeShorts}/>
+            <FilterCheckbox onChange={handleChangeShorts} />
             <span className="search-form__shorts-text">Короткометражки</span>
           </div>
         </div>
