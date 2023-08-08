@@ -17,15 +17,18 @@ function App() {
   const [isLoading, setIsLoading] = React.useState(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState('');
+  const [isServerResponse, setIsServerResponse] = React.useState(true);
 
   function handleGetMovies() {
     setIsLoading(true);
     getMovies()
       .then((movies) => {
         setMovies(movies);
+        setIsServerResponse(true);
       })
       .catch((err) => {
         console.log(err);
+        setIsServerResponse(false);
       })
       .finally(() => {
         setIsLoading(false);
@@ -54,6 +57,7 @@ function App() {
                 onGetMovies={handleGetMovies}
                 movies={movies}
                 onError={handleOpenModal}
+                onErrorServer={isServerResponse}
               />
             }
           />

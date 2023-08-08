@@ -1,8 +1,9 @@
 import "./MoviesCardList.css";
 import MoviesCard from "../MoviesCard/MoviesCard";
 import React from "react";
+import Preloader from "../Preloader/Preloader";
 
-function MoviesCardList({ movies, savedMovies }) {
+function MoviesCardList({ movies, savedMovies, onLoading, onErrorServer }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
   const [moviesPerLoad, setMoviesPerLoad] = React.useState(4);
@@ -44,6 +45,10 @@ function MoviesCardList({ movies, savedMovies }) {
     }
   }, [movies.length, moviesPerPage]);
 
+  if (onLoading) {
+    return <Preloader />
+  }
+
   return (
     <section className="movies-cardlist">
       <ul
@@ -66,6 +71,12 @@ function MoviesCardList({ movies, savedMovies }) {
           </button>
         )}
       </div>
+      {!onErrorServer && (
+          <p className="movies__error-load">
+            Во время запроса произошла ошибка. Возможно, проблема с соединением
+            или сервер недоступен. Подождите немного и попробуйте ещё раз.
+          </p>
+        )}
     </section>
   );
 }

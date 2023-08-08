@@ -3,10 +3,8 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import Preloader from "../Preloader/Preloader";
 
-function Movies({ isLoading, onGetMovies, movies, onError }) {
-
+function Movies({ isLoading, onGetMovies, movies, onError, onErrorServer }) {
   function handleSearchMovies() {
     onGetMovies();
   }
@@ -16,7 +14,7 @@ function Movies({ isLoading, onGetMovies, movies, onError }) {
       <Header />
       <main>
         <SearchForm onSubmit={handleSearchMovies} onError={onError} />
-        {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
+        <MoviesCardList movies={movies} onLoading={isLoading} onErrorServer={onErrorServer}/>
       </main>
       <Footer movies={true} />
     </section>
