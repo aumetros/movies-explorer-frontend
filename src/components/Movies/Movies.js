@@ -16,8 +16,7 @@ function Movies({ isLoading, onGetMovies, movies, onError }) {
       <Header />
       <main>
         <SearchForm onSubmit={handleSearchMovies} onError={onError} />
-        {isLoading && <MoviesCardList movies={movies} />}
-        {isLoading && <Preloader />}
+        {isLoading ? <Preloader /> : <MoviesCardList movies={movies} />}
       </main>
       <Footer movies={true} />
     </section>
