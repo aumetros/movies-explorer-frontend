@@ -1,7 +1,7 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ photo, tab, mob, savedMovies }) {
+function MoviesCard({ movie, savedMovies }) {
   const [isSavedCliked, setIsSavedCliked] = React.useState(false);
   function handleSaveClick() {
     setIsSavedCliked(!isSavedCliked);
@@ -23,17 +23,34 @@ function MoviesCard({ photo, tab, mob, savedMovies }) {
     }
   }
 
+  function convertDuration(dur) {
+    const minutes = dur % 60;
+    const hours = (dur - minutes) / 60;
+    return `${hours.toString()}ч${
+      minutes < 10 ? "0" : ""
+    }${minutes.toString()} `;
+  }
+
   return (
-    <li
-      className={`movie-card ${tab && "movie-card_hide_tab"} ${
-        mob && "movie-card_hide_mob"
-      } ${savedMovies && mob && "movie-card_hide_mob"}`}
-    >
-      <img className="movie-card__photo" src={photo} alt="33 слова о дизайне" />
+    <li className="movie-card">
+      <a
+        href={movie.trailerLink}
+        className="portfolio__link"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img
+          className="movie-card__photo"
+          src={`https://api.nomoreparties.co${movie.image.url}`}
+          alt={movie.nameRU}
+        />
+      </a>
       <div className="movie-card__container">
         <div className="movie-card__info">
-          <h2 className="movie-card__title">33 слова о дизайне</h2>
-          <span className="movie-card__duration">1ч42м</span>
+          <h2 className="movie-card__title">{movie.nameRU}</h2>
+          <span className="movie-card__duration">
+            {convertDuration(movie.duration)}
+          </span>
         </div>
         {handleTypeButton()}
       </div>

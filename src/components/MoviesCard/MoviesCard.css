@@ -13,6 +13,11 @@
   width: 270px;
   height: 151px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.movie-card__photo:hover {
+  opacity: 0.9;
 }
 
 .movie-card__container {

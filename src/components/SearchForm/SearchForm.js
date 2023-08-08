@@ -3,7 +3,7 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
-function SearchForm() {
+function SearchForm({ onSubmit }) {
   const { values, handleChange } = useForm();
   const [isShortsChecked, setIsShortsChecked] = React.useState(true);
 
@@ -13,8 +13,7 @@ function SearchForm() {
 
   function handleSearchSubmit(event) {
     event.preventDefault();
-    console.log(values.search);
-    console.log(isShortsChecked);
+    onSubmit();
     event.target.reset();
   }
 
