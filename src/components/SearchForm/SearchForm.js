@@ -14,7 +14,7 @@ function SearchForm({ onSubmit, onError }) {
   function handleSearchSubmit(event) {
     event.preventDefault();
     if (values.searchMovies) {
-      onSubmit();
+      onSubmit(values.searchMovies);
       setValues({ searchMovies: "" });
       event.target.reset();
     } else {

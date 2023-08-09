@@ -16,8 +16,10 @@ function App() {
   const [movies, setMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
-  const [modalMessage, setModalMessage] = React.useState('');
+  const [modalMessage, setModalMessage] = React.useState("");
   const [isServerResponse, setIsServerResponse] = React.useState(true);
+  const [isMoviesFound, setIsMoviesFound] = React.useState(true);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
 
   function handleGetMovies() {
     setIsLoading(true);
@@ -33,6 +35,36 @@ function App() {
       .finally(() => {
         setIsLoading(false);
       });
+  }
+
+  function handleFilter(arr, request) {
+    const result = arr.filter((movie) =>
+      movie.nameRU.toLowerCase().includes(request.toLowerCase())
+    );
+    setFilteredMovies(result);
+  }
+
+  function handleFilterMovies(request) {
+    if (movies.length === 0) {
+      setIsLoading(true);
+      getMovies()
+        .then((movies) => {
+          setMovies(movies);
+          setIsServerResponse(true);
+          handleFilter(movies, request);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsServerResponse(false);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+      console.log("Мувисов нет!");
+    } else {
+      handleFilter(movies, request);
+      console.log("Мувисы есть!");
+    }
   }
 
   function handleOpenModal(msg) {
@@ -54,10 +86,11 @@ function App() {
             element={
               <Movies
                 isLoading={isLoading}
-                onGetMovies={handleGetMovies}
-                movies={movies}
+                movies={filteredMovies}
                 onError={handleOpenModal}
                 onErrorServer={isServerResponse}
+                onNotFound={isMoviesFound}
+                onSearch={handleFilterMovies}
               />
             }
           />
@@ -68,7 +101,11 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
-      <Modal isOpen={isOpenModal} onClose={handleCloseModal} modalMessage={modalMessage}/>
+      <Modal
+        isOpen={isOpenModal}
+        onClose={handleCloseModal}
+        modalMessage={modalMessage}
+      />
     </div>
   );
 }

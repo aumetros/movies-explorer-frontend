@@ -3,7 +3,13 @@ import MoviesCard from "../MoviesCard/MoviesCard";
 import React from "react";
 import Preloader from "../Preloader/Preloader";
 
-function MoviesCardList({ movies, savedMovies, onLoading, onErrorServer }) {
+function MoviesCardList({
+  movies,
+  savedMovies,
+  onLoading,
+  onErrorServer,
+  onNotFound,
+}) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
   const [moviesPerLoad, setMoviesPerLoad] = React.useState(4);
@@ -14,7 +20,9 @@ function MoviesCardList({ movies, savedMovies, onLoading, onErrorServer }) {
   }
 
   function handleResizeWindow() {
-    setWidth(window.innerWidth);
+    setTimeout(() => {
+      setWidth(window.innerWidth);
+    }, 1000);
   }
 
   React.useEffect(() => {
@@ -46,7 +54,7 @@ function MoviesCardList({ movies, savedMovies, onLoading, onErrorServer }) {
   }, [movies.length, moviesPerPage]);
 
   if (onLoading) {
-    return <Preloader />
+    return <Preloader />;
   }
 
   return (
@@ -72,11 +80,14 @@ function MoviesCardList({ movies, savedMovies, onLoading, onErrorServer }) {
         )}
       </div>
       {!onErrorServer && (
-          <p className="movies__error-load">
-            Во время запроса произошла ошибка. Возможно, проблема с соединением
-            или сервер недоступен. Подождите немного и попробуйте ещё раз.
-          </p>
-        )}
+        <p className="movie-cardlist__error-load">
+          Во время запроса произошла ошибка. Возможно, проблема с соединением
+          или сервер недоступен. Подождите немного и попробуйте ещё раз.
+        </p>
+      )}
+      {!onNotFound && (
+        <p className="movie-cardlist__not-found">Ничего не найдено.</p>
+      )}
     </section>
   );
 }
