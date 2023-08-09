@@ -5,9 +5,15 @@ function FilterCheckbox({ onChange }) {
   const [isChecked, setIsChecked] = React.useState(true);
 
   function handleCheckShorts() {
-    onChange(!isChecked);    
+    onChange(!isChecked);
     setIsChecked(!isChecked);
   }
+
+  React.useEffect(() => {
+    if (localStorage.getItem("shorts")) {
+      setIsChecked(localStorage.getItem("shorts") === "true");
+    }
+  }, []);
 
   return (
     <label className="filter-checkbox__label" htmlFor="shorts">

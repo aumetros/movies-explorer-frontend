@@ -18,9 +18,10 @@ function Movies() {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
   const [isMovieCardListShow, setIsMovieCardListShow] = React.useState(false);
-  
 
   function handleSearchMovies(request) {
+    localStorage.setItem("request", request);
+    localStorage.setItem("shorts", isShortsChecked);
     if (movies.length === 0) {
       setIsMovieCardListShow(true);
       setIsLoading(true);
@@ -51,7 +52,8 @@ function Movies() {
     });
     setFilteredMovies(result);
     handleNotFoundMessage(result);
-  } 
+    localStorage.setItem("movies", JSON.stringify(result));
+  }
 
   function handleNotFoundMessage(result) {
     if (result.length === 0) {
@@ -62,6 +64,7 @@ function Movies() {
   }
 
   function handleCheckShorts(status) {
+    localStorage.setItem("shorts", status);
     setIsShortsCheked(status);
   }
 
@@ -86,6 +89,14 @@ function Movies() {
       handleNotFoundMessage(moviesLongplay);
     }
   }, [filteredMovies, isShortsChecked]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem("movies")) {
+      setFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+      setIsShortsCheked(localStorage.getItem("shorts") === "true");
+      setIsMovieCardListShow(true);
+    }
+  }, []);
 
   return (
     <section className="movies">

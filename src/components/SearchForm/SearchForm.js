@@ -6,12 +6,12 @@ import React from "react";
 function SearchForm({ onSubmit, onError, onShorts }) {
   const { values, handleChange, setValues } = useForm();
 
+
   function handleSearchSubmit(event) {
     event.preventDefault();
     if (values.searchMovies) {
       onSubmit(values.searchMovies);
-      setValues({ searchMovies: "" });
-      event.target.reset();
+     
     } else {
       onError("Нужно ввести ключевое слово");
     }
