@@ -21,27 +21,23 @@ function App() {
   const [isMoviesFound, setIsMoviesFound] = React.useState(true);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
 
-  function handleGetMovies() {
-    setIsLoading(true);
-    getMovies()
-      .then((movies) => {
-        setMovies(movies);
-        setIsServerResponse(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        setIsServerResponse(false);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+  function handleNotFoundMessage(result) {
+    if (result.length === 0) {
+      setIsMoviesFound(false);
+    } else {
+      setIsMoviesFound(true);
+    }
   }
 
   function handleFilter(arr, request) {
-    const result = arr.filter((movie) =>
-      movie.nameRU.toLowerCase().includes(request.toLowerCase())
-    );
+    const result = arr.filter((movie) => {
+      return (
+        movie.nameRU.toLowerCase().includes(request.toLowerCase()) ||
+        movie.nameEN.toLowerCase().includes(request.toLowerCase())
+      );
+    });
     setFilteredMovies(result);
+    handleNotFoundMessage(result);
   }
 
   function handleFilterMovies(request) {

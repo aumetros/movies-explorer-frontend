@@ -7,7 +7,6 @@ import React from "react";
 
 function Movies({
   isLoading,
-  onGetMovies,
   movies,
   onError,
   onErrorServer,
