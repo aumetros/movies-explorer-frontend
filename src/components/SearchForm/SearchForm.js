@@ -1,21 +1,29 @@
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
 function SearchForm({ onSubmit, onError, onShorts }) {
-  const { values, handleChange, setValues } = useForm();
+  const [value, setValue] = React.useState('');
 
+  function handleChange(event) {
+    setValue(event.target.value);
+  }
 
   function handleSearchSubmit(event) {
     event.preventDefault();
-    if (values.searchMovies) {
-      onSubmit(values.searchMovies);
+    if (value) {
+      onSubmit(value);
      
     } else {
       onError("Нужно ввести ключевое слово");
     }
   }
+
+  React.useEffect(() => {
+    if (localStorage.getItem("request")) {
+      setValue(localStorage.getItem("request"));
+    }
+  }, [])
 
   return (
     <section>
@@ -28,7 +36,7 @@ function SearchForm({ onSubmit, onError, onShorts }) {
               className="search-form__input"
               placeholder="Фильм"
               name="searchMovies"
-              value={values.name}
+              value={value}
               onChange={handleChange}
               noValidate
             />
