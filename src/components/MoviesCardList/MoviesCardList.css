@@ -1,6 +1,11 @@
 .movies-cardlist {
   flex-grow: 1;
+  display: none;
   padding: 70px 70px 30px;
+}
+
+.movies-cardlist_show {
+  display: block;
 }
 
 .movies-cardlist__container {

@@ -9,6 +9,7 @@ function MoviesCardList({
   onLoading,
   onErrorServer,
   onNotFound,
+  isShowed,
 }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
@@ -58,7 +59,7 @@ function MoviesCardList({
   }
 
   return (
-    <section className="movies-cardlist">
+    <section className={`movies-cardlist ${isShowed && 'movies-cardlist_show'}`}>
       <ul
         className={`movies-cardlist__container ${
           savedMovies && "movies-cardlist__container_saved"

@@ -17,9 +17,12 @@ function Movies() {
   const [isMoviesFound, setIsMoviesFound] = React.useState(true);
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
+  const [isMovieCardListShow, setIsMovieCardListShow] = React.useState(false);
+  
 
   function handleSearchMovies(request) {
     if (movies.length === 0) {
+      setIsMovieCardListShow(true);
       setIsLoading(true);
       getMovies()
         .then((movies) => {
@@ -98,6 +101,7 @@ function Movies() {
           onLoading={isLoading}
           onErrorServer={isServerResponse}
           onNotFound={isMoviesFound}
+          isShowed={isMovieCardListShow}
         />
       </main>
       <Footer movies={true} />
