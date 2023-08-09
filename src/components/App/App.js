@@ -56,10 +56,8 @@ function App() {
         .finally(() => {
           setIsLoading(false);
         });
-      console.log("Мувисов нет!");
     } else {
       handleFilter(movies, request);
-      console.log("Мувисы есть!");
     }
   }
 

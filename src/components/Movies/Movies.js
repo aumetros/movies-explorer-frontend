@@ -13,14 +13,36 @@ function Movies({
   onNotFound,
   onSearch,
 }) {
+  const [isShortsChecked, setIsShortsCheked] = React.useState(true);
+  const [renderMovies, setRenderMovies] = React.useState([]);
+
+  function handleCheckShorts(status) {
+    setIsShortsCheked(status);
+    console.log(status);
+  }
+
+  React.useEffect(() => {
+    if (isShortsChecked) {
+      setRenderMovies(movies);
+    } else {
+      const moviesLongplay = movies.filter((movie) => {
+        return movie.duration < 60;
+      });
+      setRenderMovies(moviesLongplay);
+    }
+  }, [movies, isShortsChecked]);
 
   return (
     <section className="movies">
       <Header />
       <main>
-        <SearchForm onSubmit={onSearch} onError={onError} />
+        <SearchForm
+          onSubmit={onSearch}
+          onError={onError}
+          onShorts={handleCheckShorts}
+        />
         <MoviesCardList
-          movies={movies}
+          movies={renderMovies}
           onLoading={isLoading}
           onErrorServer={onErrorServer}
           onNotFound={onNotFound}

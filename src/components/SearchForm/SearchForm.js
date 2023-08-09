@@ -3,13 +3,8 @@ import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
-function SearchForm({ onSubmit, onError }) {
+function SearchForm({ onSubmit, onError, onShorts }) {
   const { values, handleChange, setValues } = useForm();
-  const [isShortsChecked, setIsShortsChecked] = React.useState(true);
-
-  function handleChangeShorts() {
-    setIsShortsChecked(!isShortsChecked);
-  }
 
   function handleSearchSubmit(event) {
     event.preventDefault();
@@ -43,7 +38,7 @@ function SearchForm({ onSubmit, onError }) {
           </div>
           <div className="search-form__vertical-line"></div>
           <div className="search-form__shorts-container">
-            <FilterCheckbox onChange={handleChangeShorts} />
+            <FilterCheckbox onChange={onShorts} />
             <span className="search-form__shorts-text">Короткометражки</span>
           </div>
         </div>
