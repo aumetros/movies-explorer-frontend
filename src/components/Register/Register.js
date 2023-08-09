@@ -6,7 +6,7 @@ import { useForm } from "../../hooks/UseForm";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Register() {
+function Register({ onSubmit }) {
   const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
 
@@ -93,8 +93,24 @@ function Register() {
             "Заполните это поле."}
           {!errors.registerName.required &&
             errors.registerName.minLenght &&
+            !errors.registerName.validity &&
             "В имени должно быть больше 2 символов."}
+          {!errors.registerName.required &&
+            errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            "Имя содержит недопустимые символы."}
+          {!errors.registerName.required &&
+            !errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            !errors.registerName.maxLength &&
+            "Имя содержит недопустимые символы."}
+          {!errors.registerName.required &&
+            !errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            errors.registerName.maxLength &&
+            "Имя содержит недопустимые символы."}
           {errors.registerName.maxLength &&
+            !errors.registerName.validity &&
             "В имени не должно быть больше 30 символов."}
         </>
       );
@@ -124,10 +140,18 @@ function Register() {
 
   function handleRegister(event) {
     event.preventDefault();
-    console.log(values.registerName);
-    console.log(values.registerEmail);
-    console.log(values.registerPassword);
+    // onSubmit(values.registerEmail, values.registerPassword, values.registerName)
     event.target.reset();
+    setVisibilityValidate({
+      registerName: false,
+      registerEmail: false,
+      registerPassword: false,
+    });
+    setValues({
+      registerName: "",
+      registerEmail: "",
+      registerPassword: "",
+    });
   }
 
   return (

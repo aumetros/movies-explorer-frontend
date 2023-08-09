@@ -6,6 +6,7 @@ export function useFormErrors() {
       required: true,
       minLenght: true,
       maxLength: true,
+      validity: true,
     },
     registerEmail: {
       required: true,

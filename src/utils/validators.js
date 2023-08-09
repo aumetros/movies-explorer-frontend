@@ -9,6 +9,10 @@ export const validators = {
     maxLength: (value = "") => {
       return value.length > 30;
     },
+    validity: (value) => {
+      const regex = new RegExp(/[^a-zа-яё -]/iu);
+      return regex.test(value);
+    },
   },
   registerEmail: {
     required: (value) => {
