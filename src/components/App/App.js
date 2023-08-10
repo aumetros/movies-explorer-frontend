@@ -16,8 +16,23 @@ function App() {
     mainApi
       .register(email, password, name)
       .then((res) => {
-        if (res.data) {
-          console.log(res.data);
+        if (res._id) {
+          console.log(res._id);
+          localStorage.setItem("user", res._id);
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
+  function handleLoginSubmit(email, password) {
+    mainApi
+      .login(email, password)
+      .then((res) => {
+        if (res._id) {
+          console.log(res);
+          localStorage.setItem("user", res._id);
         }
       })
       .catch((err) => {
@@ -33,8 +48,11 @@ function App() {
           <Route path="/movies" element={<Movies />} />
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit}/>} />
-          <Route path="/signin" element={<Login />} />
+          <Route
+            path="/signup"
+            element={<Register onSubmit={handleRegisterSubmit} />}
+          />
+          <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>

@@ -6,7 +6,7 @@ import { useForm } from "../../hooks/UseForm";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Login() {
+function Login({ onSubmit }) {
   const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
 
@@ -73,6 +73,7 @@ function Login() {
 
   function handleLogin(event) {
     event.preventDefault();
+    onSubmit(values.loginEmail, values.loginPassword);
     console.log(values.loginEmail);
     console.log(values.loginPassword);
     event.target.reset();

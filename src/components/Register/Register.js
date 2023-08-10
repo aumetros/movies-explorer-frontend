@@ -140,7 +140,7 @@ function Register({ onSubmit }) {
 
   function handleRegister(event) {
     event.preventDefault();
-    // onSubmit(values.registerEmail, values.registerPassword, values.registerName)
+    onSubmit(values.registerEmail, values.registerPassword, values.registerName)
     event.target.reset();
     setVisibilityValidate({
       registerName: false,
