@@ -56,14 +56,9 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit} />} />
           <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
-
           <Route path="/movies" element={<ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />} />
-
-          {/* <Route path="/movies" element={<Movies />} /> */}
-          <Route path="/saved-movies" element={<SavedMovies />} />
-          <Route path="/profile" element={<Profile />} />
-          
-          
+          <Route path="/saved-movies" element={<ProtectedRouteElement loggedIn={isLoggedIn} element={SavedMovies} />} />
+          <Route path="/profile" element={<ProtectedRouteElement loggedIn={isLoggedIn} element={Profile} />} />          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
