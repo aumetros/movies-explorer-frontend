@@ -1,4 +1,4 @@
-const BASE_URL = "https://api.aumetrosdiploma.nomoredomains.xyz";
+const BASE_URL = "http://localhost:3000";
 
 export const register = (email, password, name) => {
   return fetch(`${BASE_URL}/signup`, {
@@ -26,6 +26,16 @@ export const login = (email, password) => {
       email: email,
       password: password,
     }),
+  }).then((res) => checkResponse(res));
+};
+
+export const checkToken = () => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
+    credentials: 'include',
+    headers: {
+      "Content-Type": "application/json",
+    },
   }).then((res) => checkResponse(res));
 };
 
