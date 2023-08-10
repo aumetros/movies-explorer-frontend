@@ -17,7 +17,7 @@ function App() {
 
   const navigate = useNavigate();
 
-  const handleCheckToken = React.useCallback(() => {
+  React.useEffect(() => {
     if (localStorage.getItem("user")) {
       mainApi
         .checkToken()
@@ -32,11 +32,8 @@ function App() {
           console.log(`Ошибка: ${err}`);
         });
     }
-  }, [navigate]);
-
-  React.useEffect(() => {
-    handleCheckToken();
-  }, [handleCheckToken]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function handleRegisterSubmit(email, password, name) {
     mainApi
