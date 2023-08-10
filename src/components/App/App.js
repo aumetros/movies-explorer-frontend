@@ -11,9 +11,12 @@ import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import * as mainApi from "../../utils/MainApi";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [currentUser, setCurrentUser] = React.useState({});
 
   const navigate = useNavigate();
 
@@ -32,7 +35,7 @@ function App() {
           console.log(`Ошибка: ${err}`);
         });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleRegisterSubmit(email, password, name) {
@@ -41,6 +44,7 @@ function App() {
       .then((res) => {
         if (res._id) {
           setIsLoggedIn(true);
+          setCurrentUser(res);
           localStorage.setItem("user", res._id);
           navigate("/movies", { replace: true });
         }
@@ -56,6 +60,7 @@ function App() {
       .then((res) => {
         if (res._id) {
           setIsLoggedIn(true);
+          setCurrentUser(res);
           localStorage.setItem("user", res._id);
           navigate("/movies", { replace: true });
         }
@@ -66,43 +71,48 @@ function App() {
   }
 
   return (
-    <div className="app">
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Main loggedIn={isLoggedIn} />} />
-          <Route
-            path="/signup"
-            element={<Register onSubmit={handleRegisterSubmit} />}
-          />
-          <Route
-            path="/signin"
-            element={<Login onSubmit={handleLoginSubmit} />}
-          />
-          <Route
-            path="/movies"
-            element={
-              <ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />
-            }
-          />
-          <Route
-            path="/saved-movies"
-            element={
-              <ProtectedRouteElement
-                loggedIn={isLoggedIn}
-                element={SavedMovies}
-              />
-            }
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRouteElement loggedIn={isLoggedIn} element={Profile} />
-            }
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Layout>
-    </div>
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Main loggedIn={isLoggedIn} />} />
+            <Route
+              path="/signup"
+              element={<Register onSubmit={handleRegisterSubmit} />}
+            />
+            <Route
+              path="/signin"
+              element={<Login onSubmit={handleLoginSubmit} />}
+            />
+            <Route
+              path="/movies"
+              element={
+                <ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />
+              }
+            />
+            <Route
+              path="/saved-movies"
+              element={
+                <ProtectedRouteElement
+                  loggedIn={isLoggedIn}
+                  element={SavedMovies}
+                />
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRouteElement
+                  loggedIn={isLoggedIn}
+                  element={Profile}
+                />
+              }
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </Layout>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 
