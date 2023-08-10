@@ -53,7 +53,7 @@ function App() {
     <div className="app">
       <Layout>
         <Routes>
-          <Route path="/" element={<Main />} />
+          <Route path="/" element={<Main loggedIn={isLoggedIn} />} />
           <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit} />} />
           <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
           <Route path="/movies" element={<ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />} />

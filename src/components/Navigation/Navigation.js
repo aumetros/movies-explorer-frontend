@@ -3,7 +3,7 @@ import React from "react";
 import { Link, NavLink } from "react-router-dom";
 import MobileMenu from "../MobileMenu/MobileMenu";
 
-function Navigation({ isMain }) {
+function Navigation({ isMain, loggedIn }) {
   const [isMobMenuClicked, setIsMobMenuClicked] = React.useState(false);
 
   function handleMobMenuClick() {
@@ -11,7 +11,39 @@ function Navigation({ isMain }) {
   }
 
   function handleNavBar() {
-    if (isMain) {
+    if (isMain && loggedIn) {
+      return (
+        <nav className="navigation">
+          <div className="navigation__links-container">
+            <Link
+              to="/movies"
+              className="navigation__link navigation__link_type_main"
+            >
+              Фильмы
+            </Link>
+            <Link
+              to="/saved-movies"
+              className="navigation__link navigation__link_type_main"
+            >
+              Сохранённые фильмы
+            </Link>
+          </div>
+          <Link
+            to="/profile"
+            className="navigation__link navigation__link_type_main-profile"
+          >
+            <div className="navigation__profile-icon-main"></div>
+            Аккаунт
+          </Link>
+          <button
+            className="navigation__mob-menu-icon navigation__mob-menu-icon_type_main"
+            type="button"
+            onClick={handleMobMenuClick}
+          ></button>
+          <MobileMenu isOpen={isMobMenuClicked} onClose={handleMobMenuClick} />
+        </nav>
+      );
+    } else if (isMain) {
       return (
         <nav className="navigation">
           <Link

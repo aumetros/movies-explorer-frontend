@@ -2,7 +2,7 @@ import "./Header.css";
 import Navigation from "../Navigation/Navigation";
 import { Link } from "react-router-dom";
 
-function Header({ isMain }) {
+function Header({ isMain, loggedIn }) {
   return (
     <header
       className={`header ${
@@ -12,7 +12,7 @@ function Header({ isMain }) {
       <Link to="/" className="header__logo-link">
         <div className="header__logo"></div>
       </Link>
-      <Navigation isMain={isMain} />
+      <Navigation isMain={isMain} loggedIn={loggedIn} />
     </header>
   );
 }
