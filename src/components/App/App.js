@@ -10,14 +10,21 @@ import Register from "../Register/Register";
 import Login from "../Login/Login";
 import NotFound from "../NotFound/NotFound";
 import * as mainApi from "../../utils/MainApi";
+import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
+
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
+
+
   function handleRegisterSubmit(email, password, name) {
     mainApi
       .register(email, password, name)
       .then((res) => {
         if (res._id) {
-          console.log(res._id);
+          console.log(res);
+
+          setIsLoggedIn(true);
           localStorage.setItem("user", res._id);
         }
       })
@@ -32,6 +39,8 @@ function App() {
       .then((res) => {
         if (res._id) {
           console.log(res);
+
+          setIsLoggedIn(true);
           localStorage.setItem("user", res._id);
         }
       })
@@ -45,14 +54,16 @@ function App() {
       <Layout>
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/movies" element={<Movies />} />
+          <Route path="/signup" element={<Register onSubmit={handleRegisterSubmit} />} />
+          <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
+
+          <Route path="/movies" element={<ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />} />
+
+          {/* <Route path="/movies" element={<Movies />} /> */}
           <Route path="/saved-movies" element={<SavedMovies />} />
           <Route path="/profile" element={<Profile />} />
-          <Route
-            path="/signup"
-            element={<Register onSubmit={handleRegisterSubmit} />}
-          />
-          <Route path="/signin" element={<Login onSubmit={handleLoginSubmit} />} />
+          
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
