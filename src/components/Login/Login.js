@@ -74,9 +74,15 @@ function Login({ onSubmit }) {
   function handleLogin(event) {
     event.preventDefault();
     onSubmit(values.loginEmail, values.loginPassword);
-    console.log(values.loginEmail);
-    console.log(values.loginPassword);
     event.target.reset();
+    setVisibilityValidate({
+      loginEmail: false,
+      loginPassword: false,
+    });
+    setValues({
+      loginEmail: "",
+      loginPassword: "",
+    });
   }
 
   React.useEffect(() => {
