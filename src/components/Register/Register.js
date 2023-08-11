@@ -1,14 +1,17 @@
 import "./Register.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/UseForm";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Register({ onSubmit }) {
+function Register({ onSubmit, loggedIn }) {
   const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
+
+  const navigate = useNavigate();
 
   const registerNameResult = useValidation(values.registerName, "registerName");
   const registerEmailResult = useValidation(
@@ -62,6 +65,12 @@ function Register({ onSubmit }) {
   function handleFocusInput(event) {
     setVisibilityValidate({ ...visibilityValidate, [event.target.name]: true });
   }
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      navigate("/movies", { replace: true });
+    }
+  }, [loggedIn, navigate]);
 
   React.useEffect(() => {
     setErrors({
@@ -140,7 +149,11 @@ function Register({ onSubmit }) {
 
   function handleRegister(event) {
     event.preventDefault();
-    onSubmit(values.registerEmail, values.registerPassword, values.registerName)
+    onSubmit(
+      values.registerEmail,
+      values.registerPassword,
+      values.registerName
+    );
     event.target.reset();
     setVisibilityValidate({
       registerName: false,

@@ -1,14 +1,17 @@
 import "./Login.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/UseForm";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Login({ onSubmit }) {
+function Login({ onSubmit, loggedIn }) {
   const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
+
+  const navigate = useNavigate();
 
   const loginEmailResult = useValidation(values.loginEmail, "loginEmail");
   const loginPasswordResult = useValidation(
@@ -84,6 +87,12 @@ function Login({ onSubmit }) {
       loginPassword: "",
     });
   }
+
+  React.useEffect(() => {
+    if (loggedIn) {
+      navigate("/movies", { replace: true });
+    }
+  }, [loggedIn, navigate]);
 
   React.useEffect(() => {
     setValues({

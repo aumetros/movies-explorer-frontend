@@ -130,13 +130,20 @@ function App() {
             <Route path="/" element={<Main loggedIn={isLoggedIn} />} />
             <Route
               path="/signup"
-              loggedIn={isLoggedIn}
-              element={<Register onSubmit={handleRegisterSubmit} />}
+              element={
+                <Register
+                  onSubmit={handleRegisterSubmit}
+                  loggedIn={isLoggedIn}
+                />
+              }
             />
             <Route
               path="/signin"
-              loggedIn={isLoggedIn}
-              element={<Login onSubmit={handleLoginSubmit} />}
+              element={
+                <Login
+                  onSubmit={handleLoginSubmit}
+                  loggedIn={isLoggedIn} />
+              }
             />
             <Route
               path="/movies"
