@@ -19,6 +19,7 @@ function App() {
   const [currentUser, setCurrentUser] = React.useState({});
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
+  const [userMovies, setUserMovies] = React.useState([]);
 
   const navigate = useNavigate();
 
@@ -106,12 +107,11 @@ function App() {
   }
 
   function handleSaveMovie(movie) {
-    console.log(movie);
     mainApi
       .saveMovies(movie)
       .then((res) => {
         if (res.data) {
-          console.log(res.data);
+          setUserMovies([res.data, ...userMovies]);
         }
       })
       .catch((err) => {
@@ -135,6 +135,22 @@ function App() {
         });
     }
   }, []);
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      mainApi
+        .getUserMovies()
+        .then((res) => {
+          if (res.data) {
+            console.log(res.data);
+            setUserMovies(res.data);
+          }
+        })
+        .catch((err) => {
+          console.log(`Ошибка: ${err}`);
+        });
+    }
+  }, [isLoggedIn]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -165,6 +181,7 @@ function App() {
                   element={Movies}
                   onOpenModal={handleOpenModal}
                   onSaveMovie={handleSaveMovie}
+                  userMovies={userMovies}
                 />
               }
             />

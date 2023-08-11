@@ -83,6 +83,16 @@ export const saveMovies = (movie) => {
   }).then((res) => checkResponse(res));
 };
 
+export const getUserMovies = () => {
+  return fetch(`${BASE_URL}/movies/`, {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }).then((res) => checkResponse(res));
+};
+
 function checkResponse(res) {
   if (res.ok) {
     return res.json();

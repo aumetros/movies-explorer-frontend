@@ -1,14 +1,24 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ movie, savedMovies, onSaveMovie }) {
+function MoviesCard({ movie, savedMovies, onSaveMovie, userMovies }) {
   const [isSavedCliked, setIsSavedCliked] = React.useState(false);
 
-  
   function handleSaveClick() {
     setIsSavedCliked(!isSavedCliked);
     onSaveMovie(movie);
   }
+
+  React.useEffect(() => {
+    const hasMovieSaved = userMovies.find((saved) => {
+      return saved.movieId === movie.id;
+    });
+    if (hasMovieSaved) {
+      setIsSavedCliked(true);
+    } else {
+      setIsSavedCliked(false);
+    }
+  }, [userMovies, movie]);
 
   function handleTypeButton() {
     if (!savedMovies) {
