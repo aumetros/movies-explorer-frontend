@@ -22,7 +22,7 @@ export const login = (email, password) => {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({      
+    body: JSON.stringify({
       email: email,
       password: password,
     }),
@@ -32,10 +32,24 @@ export const login = (email, password) => {
 export const checkToken = () => {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
-    credentials: 'include',
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
+  }).then((res) => checkResponse(res));
+};
+
+export const editProfile = (email, name) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "PATCH",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      email: email,
+      name: name,
+    }),
   }).then((res) => checkResponse(res));
 };
 

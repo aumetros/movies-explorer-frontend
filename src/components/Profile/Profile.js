@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Profile() {
+function Profile({ onSubmit }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [nameValue, setNameValue] = React.useState("");
   const [emailValue, setEmailValue] = React.useState("");
@@ -107,13 +107,16 @@ function Profile() {
 
   function handleProfileEdit(event) {
     event.preventDefault();
-    console.log(nameValue);
-    console.log(emailValue);
-    
+    onSubmit(emailValue, nameValue);
+    setNameValue(currentUser.name);
+    setEmailValue(currentUser.email);
+    setIsNameDublicate(true);
+    setIsEmailDublicate(true);
     setVisibilityValidate({
       editName: false,
       editEmail: false,
     });
+
   }
 
   React.useEffect(() => {

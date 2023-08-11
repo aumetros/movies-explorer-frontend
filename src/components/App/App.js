@@ -12,30 +12,24 @@ import NotFound from "../NotFound/NotFound";
 import * as mainApi from "../../utils/MainApi";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
-
+import Modal from "../Modal/Modal";
 
 function App() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [currentUser, setCurrentUser] = React.useState({});
+  const [isOpenModal, setIsOpenModal] = React.useState(false);
+  const [modalMessage, setModalMessage] = React.useState("");
 
   const navigate = useNavigate();
 
-  React.useEffect(() => {
-    if (localStorage.getItem("user")) {
-      mainApi
-        .checkToken()
-        .then((res) => {
-          if (res) {
-            setIsLoggedIn(true);
-            setCurrentUser(res.data);
-          }
-        })
-        .catch((err) => {
-          localStorage.removeItem("user");
-          console.log(`Ошибка: ${err}`);
-        });
-    }
-  }, []);
+  function handleOpenModal(msg) {
+    setModalMessage(msg);
+    setIsOpenModal(!isOpenModal);
+  }
+
+  function handleCloseModal() {
+    setIsOpenModal(false);
+  }
 
   function handleRegisterSubmit(email, password, name) {
     mainApi
@@ -68,6 +62,40 @@ function App() {
         console.log(`Ошибка: ${err}`);
       });
   }
+
+  function handleEditProfile(email, name) {
+    mainApi
+      .editProfile(email, name)
+      .then((res) => {
+        if (res.data) {
+          setCurrentUser(res.data);
+          handleOpenModal("Данные успешно обновлены.");
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+        err === 409
+          ? handleOpenModal("Пользователь с таким email уже существует.")
+          : console.log(`Ошибка: ${err}`);
+      });
+  }
+
+  React.useEffect(() => {
+    if (localStorage.getItem("user")) {
+      mainApi
+        .checkToken()
+        .then((res) => {
+          if (res) {
+            setIsLoggedIn(true);
+            setCurrentUser(res.data);
+          }
+        })
+        .catch((err) => {
+          localStorage.removeItem("user");
+          console.log(`Ошибка: ${err}`);
+        });
+    }
+  }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -106,12 +134,18 @@ function App() {
                 <ProtectedRouteElement
                   loggedIn={isLoggedIn}
                   element={Profile}
+                  onSubmit={handleEditProfile}
                 />
               }
             />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </Layout>
+        <Modal
+          isOpen={isOpenModal}
+          onClose={handleCloseModal}
+          modalMessage={modalMessage}
+        />
       </div>
     </CurrentUserContext.Provider>
   );
