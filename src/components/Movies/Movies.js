@@ -6,7 +6,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import React from "react";
 import { getMovies } from "../../utils/MoviesApi";
 
-function Movies({ onOpenModal }) {
+function Movies({ onOpenModal, onSaveMovie }) {
   const [isShortsChecked, setIsShortsCheked] = React.useState(true);
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
@@ -24,6 +24,7 @@ function Movies({ onOpenModal }) {
       setIsLoading(true);
       getMovies()
         .then((movies) => {
+          console.log(movies)
           setMovies(movies);
           setIsServerResponse(true);
           handleFilter(movies, request);
@@ -101,6 +102,7 @@ function Movies({ onOpenModal }) {
           onErrorServer={isServerResponse}
           onNotFound={isMoviesFound}
           isShowed={isMovieCardListShow}
+          onSaveMovie={onSaveMovie}
         />
       </main>
       <Footer movies={true} />

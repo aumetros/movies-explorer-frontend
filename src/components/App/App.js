@@ -105,6 +105,20 @@ function App() {
       });
   }
 
+  function handleSaveMovie(movie) {
+    console.log(movie);
+    mainApi
+      .saveMovies(movie)
+      .then((res) => {
+        if (res.data) {
+          console.log(res.data);
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
   React.useEffect(() => {
     if (localStorage.getItem("user")) {
       mainApi
@@ -140,9 +154,7 @@ function App() {
             <Route
               path="/signin"
               element={
-                <Login
-                  onSubmit={handleLoginSubmit}
-                  loggedIn={isLoggedIn} />
+                <Login onSubmit={handleLoginSubmit} loggedIn={isLoggedIn} />
               }
             />
             <Route
@@ -152,6 +164,7 @@ function App() {
                   loggedIn={isLoggedIn}
                   element={Movies}
                   onOpenModal={handleOpenModal}
+                  onSaveMovie={handleSaveMovie}
                 />
               }
             />

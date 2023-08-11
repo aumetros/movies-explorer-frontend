@@ -10,6 +10,7 @@ function MoviesCardList({
   onErrorServer,
   onNotFound,
   isShowed,
+  onSaveMovie,
 }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
@@ -66,7 +67,7 @@ function MoviesCardList({
         }`}
       >
         {movies.slice(0, moviesPerPage).map((movie) => {
-          return <MoviesCard key={movie.id} movie={movie} />;
+          return <MoviesCard key={movie.id} movie={movie} onSaveMovie={onSaveMovie} />;
         })}
       </ul>
       <div className="movie-cardlist__loader">

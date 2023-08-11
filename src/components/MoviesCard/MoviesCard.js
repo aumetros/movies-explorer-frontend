@@ -1,10 +1,13 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ movie, savedMovies }) {
+function MoviesCard({ movie, savedMovies, onSaveMovie }) {
   const [isSavedCliked, setIsSavedCliked] = React.useState(false);
+
+  
   function handleSaveClick() {
     setIsSavedCliked(!isSavedCliked);
+    onSaveMovie(movie);
   }
 
   function handleTypeButton() {

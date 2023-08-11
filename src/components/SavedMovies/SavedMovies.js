@@ -2,19 +2,27 @@ import "./SavedMovies.css";
 import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import MoviesCard from "../MoviesCard/MoviesCard";
-import Footer from "../Footer/Footer";
 
+import Footer from "../Footer/Footer";
 
 function SavedMovies() {
   return (
     <section className="saved-movies">
       <Header />
       <main>
-        <SearchForm />
-        <MoviesCardList savedMovies={true}>
-          
-        </MoviesCardList>
+        {/* <SearchForm
+          onSubmit={handleSearchMovies}
+          onError={onOpenModal}
+          onShorts={handleCheckShorts}
+        /> */}
+        {/* <MoviesCardList
+          savedMovies={true}
+          movies={renderMovies}
+          onLoading={isLoading}
+          onErrorServer={isServerResponse}
+          onNotFound={isMoviesFound}
+          isShowed={isMovieCardListShow}
+        /> */}
       </main>
       <Footer />
     </section>
