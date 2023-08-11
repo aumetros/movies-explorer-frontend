@@ -44,6 +44,9 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+        err === 409
+          ? handleOpenModal("Пользователь с таким email уже существует.")
+          : console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -60,6 +63,9 @@ function App() {
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
+        err === 401
+          ? handleOpenModal("Неправильные email или пароль.")
+          : console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -77,6 +83,25 @@ function App() {
         err === 409
           ? handleOpenModal("Пользователь с таким email уже существует.")
           : console.log(`Ошибка: ${err}`);
+      });
+  }
+
+  function handleLogoutUser() {
+    mainApi
+      .logoutUser()
+      .then((res) => {
+        if (res.message) {
+          console.log(res.message);
+          localStorage.removeItem("user");
+          localStorage.removeItem("request");
+          localStorage.removeItem("shorts");
+          localStorage.removeItem("movies");
+          setIsLoggedIn(false);
+          navigate("/", { replace: true });
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
       });
   }
 
@@ -116,7 +141,11 @@ function App() {
             <Route
               path="/movies"
               element={
-                <ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} onOpenModal={handleOpenModal} />
+                <ProtectedRouteElement
+                  loggedIn={isLoggedIn}
+                  element={Movies}
+                  onOpenModal={handleOpenModal}
+                />
               }
             />
             <Route
@@ -135,6 +164,7 @@ function App() {
                   loggedIn={isLoggedIn}
                   element={Profile}
                   onSubmit={handleEditProfile}
+                  onLogout={handleLogoutUser}
                 />
               }
             />

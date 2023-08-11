@@ -53,6 +53,13 @@ export const editProfile = (email, name) => {
   }).then((res) => checkResponse(res));
 };
 
+export const logoutUser = () => {
+  return fetch(`${BASE_URL}/signout`, {
+    method: "POST",
+    credentials: "include",
+  }).then((res) => checkResponse(res));
+};
+
 function checkResponse(res) {
   if (res.ok) {
     return res.json();

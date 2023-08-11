@@ -6,7 +6,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Profile({ onSubmit }) {
+function Profile({ onSubmit, onLogout }) {
   const currentUser = React.useContext(CurrentUserContext);
   const [nameValue, setNameValue] = React.useState("");
   const [emailValue, setEmailValue] = React.useState("");
@@ -177,7 +177,7 @@ function Profile({ onSubmit }) {
           </div>
           <span className="edit__error">{handleShowEditEmailErrors()}</span>
         </Form>
-        <button className="profile__logout-btn">Выйти из аккаунта</button>
+        <button className="profile__logout-btn" onClick={onLogout}>Выйти из аккаунта</button>
       </main>
     </section>
   );
