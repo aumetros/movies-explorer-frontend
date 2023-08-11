@@ -22,6 +22,16 @@ export function useFormErrors() {
     loginPassword: {
       required: true,
     },
+    editName: {
+      required: true,
+      minLenght: true,
+      maxLength: true,
+      validity: true,
+    },
+    editEmail: {
+      required: true,
+      email: true,
+    },
   });
 
   return { errors, setErrors };

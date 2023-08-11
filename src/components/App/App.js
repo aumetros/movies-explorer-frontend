@@ -27,7 +27,7 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
-            navigate("/movies", { replace: true });
+            setCurrentUser(res.data);
           }
         })
         .catch((err) => {
@@ -35,7 +35,6 @@ function App() {
           console.log(`Ошибка: ${err}`);
         });
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function handleRegisterSubmit(email, password, name) {
@@ -78,10 +77,12 @@ function App() {
             <Route path="/" element={<Main loggedIn={isLoggedIn} />} />
             <Route
               path="/signup"
+              loggedIn={isLoggedIn}
               element={<Register onSubmit={handleRegisterSubmit} />}
             />
             <Route
               path="/signin"
+              loggedIn={isLoggedIn}
               element={<Login onSubmit={handleLoginSubmit} />}
             />
             <Route
