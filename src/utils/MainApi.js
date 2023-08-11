@@ -93,6 +93,13 @@ export const getUserMovies = () => {
   }).then((res) => checkResponse(res));
 };
 
+export const deleteSavedMovie = (movieId) => {
+  return fetch(`${BASE_URL}/movies/${movieId}`, {
+    method: "DELETE",
+    credentials: "include",
+  }).then((res) => checkResponse(res));
+};
+
 function checkResponse(res) {
   if (res.ok) {
     return res.json();

@@ -1,16 +1,30 @@
 import React from "react";
 import "./MoviesCard.css";
 
-function MoviesCard({ movie, savedMovies, onSaveMovie, userMovies }) {
+function MoviesCard({
+  movie,
+  savedMovies,
+  onSaveMovie,
+  userMovies,
+  onDeleteMovie,
+}) {
   const [isSavedCliked, setIsSavedCliked] = React.useState(false);
 
   function handleSaveClick() {
-    setIsSavedCliked(!isSavedCliked);
-    onSaveMovie(movie);
+    if (isSavedCliked) {
+      const savedMovie = userMovies.find((saved) => {
+        return saved.movieId === movie.id;
+      });
+      onDeleteMovie(savedMovie._id);
+      setIsSavedCliked(!isSavedCliked);
+    } else {
+      onSaveMovie(movie);
+      setIsSavedCliked(!isSavedCliked);
+    }
   }
 
   React.useEffect(() => {
-    const hasMovieSaved = userMovies.find((saved) => {
+    const hasMovieSaved = userMovies.some((saved) => {
       return saved.movieId === movie.id;
     });
     if (hasMovieSaved) {

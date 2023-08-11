@@ -6,7 +6,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import React from "react";
 import { getMovies } from "../../utils/MoviesApi";
 
-function Movies({ onOpenModal, onSaveMovie, userMovies }) {
+function Movies({ onOpenModal, onSaveMovie, userMovies, onDeleteMovie }) {
   const [isShortsChecked, setIsShortsCheked] = React.useState(true);
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
@@ -103,6 +103,7 @@ function Movies({ onOpenModal, onSaveMovie, userMovies }) {
           onNotFound={isMoviesFound}
           isShowed={isMovieCardListShow}
           onSaveMovie={onSaveMovie}
+          onDeleteMovie={onDeleteMovie}
           userMovies={userMovies}
         />
       </main>

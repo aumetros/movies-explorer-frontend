@@ -119,6 +119,21 @@ function App() {
       });
   }
 
+  function handleDeleteMovie(movieId) {
+    mainApi
+      .deleteSavedMovie(movieId)
+      .then((res) => {
+        if (res.data) {
+          setUserMovies((movies) =>
+            movies.filter((m) => m._id !== res.data._id)
+          );
+        }
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
   React.useEffect(() => {
     if (localStorage.getItem("user")) {
       mainApi
@@ -142,7 +157,6 @@ function App() {
         .getUserMovies()
         .then((res) => {
           if (res.data) {
-            console.log(res.data);
             setUserMovies(res.data);
           }
         })
@@ -181,6 +195,7 @@ function App() {
                   element={Movies}
                   onOpenModal={handleOpenModal}
                   onSaveMovie={handleSaveMovie}
+                  onDeleteMovie={handleDeleteMovie}
                   userMovies={userMovies}
                 />
               }

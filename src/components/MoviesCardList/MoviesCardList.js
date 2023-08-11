@@ -12,6 +12,7 @@ function MoviesCardList({
   isShowed,
   onSaveMovie,
   userMovies,
+  onDeleteMovie,
 }) {
   const [isShowMore, setIsShowMore] = React.useState(false);
   const [moviesPerPage, setMoviesPerPage] = React.useState(16);
@@ -61,14 +62,24 @@ function MoviesCardList({
   }
 
   return (
-    <section className={`movies-cardlist ${isShowed && 'movies-cardlist_show'}`}>
+    <section
+      className={`movies-cardlist ${isShowed && "movies-cardlist_show"}`}
+    >
       <ul
         className={`movies-cardlist__container ${
           savedMovies && "movies-cardlist__container_saved"
         }`}
       >
         {movies.slice(0, moviesPerPage).map((movie) => {
-          return <MoviesCard key={movie.id} movie={movie} onSaveMovie={onSaveMovie} userMovies={userMovies} />;
+          return (
+            <MoviesCard
+              key={movie.id}
+              movie={movie}
+              onSaveMovie={onSaveMovie}
+              userMovies={userMovies}
+              onDeleteMovie={onDeleteMovie}
+            />
+          );
         })}
       </ul>
       <div className="movie-cardlist__loader">
