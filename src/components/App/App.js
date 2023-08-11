@@ -116,7 +116,7 @@ function App() {
             <Route
               path="/movies"
               element={
-                <ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} />
+                <ProtectedRouteElement loggedIn={isLoggedIn} element={Movies} onOpenModal={handleOpenModal} />
               }
             />
             <Route

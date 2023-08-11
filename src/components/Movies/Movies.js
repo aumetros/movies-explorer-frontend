@@ -5,9 +5,8 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import React from "react";
 import { getMovies } from "../../utils/MoviesApi";
-import Modal from "../Modal/Modal";
 
-function Movies() {
+function Movies({ onOpenModal }) {
   const [isShortsChecked, setIsShortsCheked] = React.useState(true);
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
@@ -15,8 +14,6 @@ function Movies() {
   const [isServerResponse, setIsServerResponse] = React.useState(true);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isMoviesFound, setIsMoviesFound] = React.useState(true);
-  const [isOpenModal, setIsOpenModal] = React.useState(false);
-  const [modalMessage, setModalMessage] = React.useState("");
   const [isMovieCardListShow, setIsMovieCardListShow] = React.useState(false);
 
   function handleSearchMovies(request) {
@@ -68,15 +65,6 @@ function Movies() {
     setIsShortsCheked(status);
   }
 
-  function handleOpenModal(msg) {
-    setModalMessage(msg);
-    setIsOpenModal(!isOpenModal);
-  }
-
-  function handleCloseModal() {
-    setIsOpenModal(false);
-  }
-
   React.useEffect(() => {
     if (isShortsChecked) {
       setRenderMovies(filteredMovies);
@@ -104,7 +92,7 @@ function Movies() {
       <main>
         <SearchForm
           onSubmit={handleSearchMovies}
-          onError={handleOpenModal}
+          onError={onOpenModal}
           onShorts={handleCheckShorts}
         />
         <MoviesCardList
@@ -116,11 +104,6 @@ function Movies() {
         />
       </main>
       <Footer movies={true} />
-      <Modal
-        isOpen={isOpenModal}
-        onClose={handleCloseModal}
-        modalMessage={modalMessage}
-      />
     </section>
   );
 }
