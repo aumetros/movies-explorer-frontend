@@ -206,6 +206,7 @@ function App() {
                 <ProtectedRouteElement
                   loggedIn={isLoggedIn}
                   element={SavedMovies}
+                  onOpenModal={handleOpenModal}
                 />
               }
             />
