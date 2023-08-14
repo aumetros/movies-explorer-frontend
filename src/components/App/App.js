@@ -45,7 +45,7 @@ function App() {
         console.log(`Ошибка: ${err}`);
         err === 409
           ? handleOpenModal("Пользователь с таким email уже существует.")
-          : console.log(`Ошибка: ${err}`);
+          : handleOpenModal("Что-то пошло не так. Попробуйте зарегистрироваться позже.");
       });
   }
 
@@ -64,7 +64,7 @@ function App() {
         console.log(`Ошибка: ${err}`);
         err === 401
           ? handleOpenModal("Неправильные email или пароль.")
-          : console.log(`Ошибка: ${err}`);
+          : handleOpenModal("Что-то пошло не так. Попробуйте войти позже.");
       });
   }
 

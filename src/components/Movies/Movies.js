@@ -71,11 +71,11 @@ function Movies({
       setRenderMovies(filteredMovies);
       handleNotFoundMessage(filteredMovies);
     } else {
-      const moviesLongplay = filteredMovies.filter((movie) => {
+      const shorts = filteredMovies.filter((movie) => {
         return movie.duration < 40;
       });
-      setRenderMovies(moviesLongplay);
-      handleNotFoundMessage(moviesLongplay);
+      setRenderMovies(shorts);
+      handleNotFoundMessage(shorts);
     }
   }, [filteredMovies, isShortsChecked]);
 
