@@ -28,10 +28,10 @@ function SavedMovies({
     setIsShortsCheked(status);
   }
 
-  React.useEffect(() => {
-    setFilteredMovies([]);
-    setRenderMovies(userMovies);
-  }, [userMovies]);
+  function handleDeleteMovie(movieId) {
+    onDeleteMovie(movieId);
+    setFilteredMovies((movies) => movies.filter((m) => m._id !== movieId));
+  }
 
   React.useEffect(() => {
     if (renderMovies.length !== 0) {
@@ -42,36 +42,24 @@ function SavedMovies({
   }, [renderMovies]);
 
   React.useEffect(() => {
-    if (!isSearched && isShortsChecked && filteredMovies.length !== 0) {
-      setRenderMovies(filteredMovies);
-    } else if (!isSearched && !isShortsChecked && filteredMovies.length !== 0) {
-      const moviesLongplay = filteredMovies.filter((movie) => {
+    if (!isSearched && !isShortsChecked && filteredMovies.length === 0) {
+      setRenderMovies(userMovies);
+    } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
+      const shorts = userMovies.filter((movie) => {
         return movie.duration < 40;
       });
-      setRenderMovies(moviesLongplay);
+      setRenderMovies(shorts);
     } else if (isSearched && !isShortsChecked && filteredMovies.length !== 0) {
       setRenderMovies(filteredMovies);
     } else if (isSearched && isShortsChecked && filteredMovies.length !== 0) {
-      const moviesLongplay = filteredMovies.filter((movie) => {
+      const shorts = filteredMovies.filter((movie) => {
         return movie.duration < 40;
       });
-      setRenderMovies(moviesLongplay);
-    } else if (!isSearched && !isShortsChecked && filteredMovies.length === 0) {
-      setRenderMovies(userMovies);
-    } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
-      const moviesLongplay = userMovies.filter((movie) => {
-        return movie.duration < 40;
-      });
-      setRenderMovies(moviesLongplay);
-    } else if (isSearched && !isShortsChecked && filteredMovies.length === 0) {
+      setRenderMovies(shorts);
+    } else {
       setRenderMovies(filteredMovies);
-    } else if (isSearched && isShortsChecked && filteredMovies.length === 0) {
-      const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration < 40;
-      });
-      setRenderMovies(moviesLongplay);
     }
-  }, [userMovies, isShortsChecked, filteredMovies, isSearched]);
+  }, [userMovies, isSearched, isShortsChecked, filteredMovies]);
 
   return (
     <section className="saved-movies">
@@ -89,7 +77,7 @@ function SavedMovies({
           onErrorServer={onServerResponse}
           onNotFound={!isSavedMovies}
           isShowed={true}
-          onDeleteMovie={onDeleteMovie}
+          onDeleteMovie={handleDeleteMovie}
         />
       </main>
       <Footer />
