@@ -158,7 +158,6 @@ function App() {
         .getUserMovies()
         .then((res) => {
           if (res.data) {
-            console.log(res.data)
             setUserMovies(res.data);
             setIsServerResponse(true);
           }

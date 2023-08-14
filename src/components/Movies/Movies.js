@@ -24,7 +24,6 @@ function Movies({ onOpenModal, onSaveMovie, userMovies, onDeleteMovie }) {
       setIsLoading(true);
       getMovies()
         .then((movies) => {
-          console.log(movies)
           setMovies(movies);
           setIsServerResponse(true);
           handleFilter(movies, request);

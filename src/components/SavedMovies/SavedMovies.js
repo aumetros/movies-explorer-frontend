@@ -8,8 +8,11 @@ import React from "react";
 function SavedMovies({ onOpenModal, userMovies, onServerResponse, onDeleteMovie }) {
   const [isSavedMovies, setIsSavedMovies] = React.useState(false);
 
+
   React.useEffect(() => {
     if (userMovies.length !== 0) {
+      setIsSavedMovies(false);
+    } else {
       setIsSavedMovies(true);
     }
   }, [userMovies]);
@@ -27,8 +30,8 @@ function SavedMovies({ onOpenModal, userMovies, onServerResponse, onDeleteMovie 
           savedMovies={true}
           movies={userMovies}
           onErrorServer={onServerResponse}
-          onNotFound={isSavedMovies}
-          isShowed={isSavedMovies}
+          onNotFound={!isSavedMovies}
+          isShowed={true}
           onDeleteMovie={onDeleteMovie}
         />
       </main>
