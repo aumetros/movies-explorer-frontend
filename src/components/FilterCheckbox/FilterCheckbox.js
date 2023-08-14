@@ -2,7 +2,7 @@ import React from "react";
 import "./FilterCheckbox.css";
 
 function FilterCheckbox({ onChange, savedMovies }) {
-  const [isChecked, setIsChecked] = React.useState(true);
+  const [isChecked, setIsChecked] = React.useState(false);
 
   function handleCheckShorts() {
     onChange(!isChecked);

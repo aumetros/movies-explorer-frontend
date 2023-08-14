@@ -13,7 +13,7 @@ function Movies({
   onDeleteMovie,
   onFilter,
 }) {
-  const [isShortsChecked, setIsShortsCheked] = React.useState(true);
+  const [isShortsChecked, setIsShortsCheked] = React.useState(false);
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -67,12 +67,12 @@ function Movies({
   }
 
   React.useEffect(() => {
-    if (isShortsChecked) {
+    if (!isShortsChecked) {
       setRenderMovies(filteredMovies);
       handleNotFoundMessage(filteredMovies);
     } else {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 60;
+        return movie.duration < 40;
       });
       setRenderMovies(moviesLongplay);
       handleNotFoundMessage(moviesLongplay);

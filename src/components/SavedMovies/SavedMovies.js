@@ -46,28 +46,28 @@ function SavedMovies({
       setRenderMovies(filteredMovies);
     } else if (!isSearched && !isShortsChecked && filteredMovies.length !== 0) {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 60;
+        return movie.duration < 40;
       });
       setRenderMovies(moviesLongplay);
-    } else if (isSearched && isShortsChecked && filteredMovies.length !== 0) {
-      setRenderMovies(filteredMovies);
     } else if (isSearched && !isShortsChecked && filteredMovies.length !== 0) {
-      const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 60;
-      });
-      setRenderMovies(moviesLongplay);
-    } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
-      setRenderMovies(userMovies);
-    } else if (!isSearched && !isShortsChecked && filteredMovies.length === 0) {
-      const moviesLongplay = userMovies.filter((movie) => {
-        return movie.duration > 60;
-      });
-      setRenderMovies(moviesLongplay);
-    } else if (isSearched && isShortsChecked && filteredMovies.length === 0) {
       setRenderMovies(filteredMovies);
-    } else if (isSearched && !isShortsChecked && filteredMovies.length === 0) {
+    } else if (isSearched && isShortsChecked && filteredMovies.length !== 0) {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 60;
+        return movie.duration > 40;
+      });
+      setRenderMovies(moviesLongplay);
+    } else if (!isSearched && !isShortsChecked && filteredMovies.length === 0) {
+      setRenderMovies(userMovies);
+    } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
+      const moviesLongplay = userMovies.filter((movie) => {
+        return movie.duration > 40;
+      });
+      setRenderMovies(moviesLongplay);
+    } else if (isSearched && !isShortsChecked && filteredMovies.length === 0) {
+      setRenderMovies(filteredMovies);
+    } else if (isSearched && isShortsChecked && filteredMovies.length === 0) {
+      const moviesLongplay = filteredMovies.filter((movie) => {
+        return movie.duration > 40;
       });
       setRenderMovies(moviesLongplay);
     }
