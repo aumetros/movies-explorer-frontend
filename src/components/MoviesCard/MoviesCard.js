@@ -24,15 +24,17 @@ function MoviesCard({
   }
 
   React.useEffect(() => {
-    const hasMovieSaved = userMovies.some((saved) => {
-      return saved.movieId === movie.id;
-    });
-    if (hasMovieSaved) {
-      setIsSavedCliked(true);
-    } else {
-      setIsSavedCliked(false);
+    if (!savedMovies) {
+      const hasMovieSaved = userMovies.some((saved) => {
+        return saved.movieId === movie.id;
+      });
+      if (hasMovieSaved) {
+        setIsSavedCliked(true);
+      } else {
+        setIsSavedCliked(false);
+      }
     }
-  }, [userMovies, movie]);
+  }, [userMovies, movie, savedMovies]);
 
   function handleTypeButton() {
     if (!savedMovies) {
@@ -68,7 +70,7 @@ function MoviesCard({
       >
         <img
           className="movie-card__photo"
-          src={`https://api.nomoreparties.co${movie.image.url}`}
+          src={savedMovies ? movie.image : `https://api.nomoreparties.co${movie.image.url}`}
           alt={movie.nameRU}
         />
       </a>

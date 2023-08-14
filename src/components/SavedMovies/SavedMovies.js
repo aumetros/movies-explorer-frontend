@@ -3,8 +3,17 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
+import React from "react";
 
-function SavedMovies({onOpenModal, }) {
+function SavedMovies({ onOpenModal, userMovies, onServerResponse }) {
+  const [isSavedMovies, setIsSavedMovies] = React.useState(false);
+
+  React.useEffect(() => {
+    if (userMovies.length !== 0) {
+      setIsSavedMovies(true);
+    }
+  }, [userMovies]);
+
   return (
     <section className="saved-movies">
       <Header />
@@ -14,14 +23,13 @@ function SavedMovies({onOpenModal, }) {
           onError={onOpenModal}
           onShorts={handleCheckShorts}
         /> */}
-        {/* <MoviesCardList
+        <MoviesCardList
           savedMovies={true}
-          movies={renderMovies}
-          onLoading={isLoading}
-          onErrorServer={isServerResponse}
-          onNotFound={isMoviesFound}
-          isShowed={isMovieCardListShow}
-        /> */}
+          movies={userMovies}
+          onErrorServer={onServerResponse}
+          onNotFound={isSavedMovies}
+          isShowed={isSavedMovies}
+        />
       </main>
       <Footer />
     </section>

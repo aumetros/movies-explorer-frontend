@@ -61,6 +61,7 @@ function MoviesCardList({
     return <Preloader />;
   }
 
+
   return (
     <section
       className={`movies-cardlist ${isShowed && "movies-cardlist_show"}`}
@@ -70,7 +71,7 @@ function MoviesCardList({
           savedMovies && "movies-cardlist__container_saved"
         }`}
       >
-        {movies.slice(0, moviesPerPage).map((movie) => {
+        {!savedMovies && movies.slice(0, moviesPerPage).map((movie) => {
           return (
             <MoviesCard
               key={movie.id}
@@ -78,6 +79,19 @@ function MoviesCardList({
               onSaveMovie={onSaveMovie}
               userMovies={userMovies}
               onDeleteMovie={onDeleteMovie}
+              savedMovies={savedMovies}
+            />
+          );
+        })}
+        {savedMovies && movies.map((movie) => {
+          return (
+            <MoviesCard
+              key={movie._id}
+              movie={movie}
+              onSaveMovie={onSaveMovie}
+              userMovies={userMovies}
+              onDeleteMovie={onDeleteMovie}
+              savedMovies={savedMovies}
             />
           );
         })}

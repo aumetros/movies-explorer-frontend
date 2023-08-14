@@ -20,6 +20,7 @@ function App() {
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
   const [userMovies, setUserMovies] = React.useState([]);
+  const [isServerResponse, setIsServerResponse] = React.useState(true);
 
   const navigate = useNavigate();
 
@@ -157,10 +158,13 @@ function App() {
         .getUserMovies()
         .then((res) => {
           if (res.data) {
+            console.log(res.data)
             setUserMovies(res.data);
+            setIsServerResponse(true);
           }
         })
         .catch((err) => {
+          setIsServerResponse(false);
           console.log(`Ошибка: ${err}`);
         });
     }
@@ -207,6 +211,8 @@ function App() {
                   loggedIn={isLoggedIn}
                   element={SavedMovies}
                   onOpenModal={handleOpenModal}
+                  userMovies={userMovies}
+                  onServerResponse={isServerResponse}
                 />
               }
             />
