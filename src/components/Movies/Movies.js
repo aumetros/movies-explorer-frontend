@@ -6,7 +6,13 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import React from "react";
 import { getMovies } from "../../utils/MoviesApi";
 
-function Movies({ onOpenModal, onSaveMovie, userMovies, onDeleteMovie }) {
+function Movies({
+  onOpenModal,
+  onSaveMovie,
+  userMovies,
+  onDeleteMovie,
+  onFilter,
+}) {
   const [isShortsChecked, setIsShortsCheked] = React.useState(true);
   const [renderMovies, setRenderMovies] = React.useState([]);
   const [movies, setMovies] = React.useState([]);
@@ -41,15 +47,10 @@ function Movies({ onOpenModal, onSaveMovie, userMovies, onDeleteMovie }) {
   }
 
   function handleFilter(arr, request) {
-    const result = arr.filter((movie) => {
-      return (
-        movie.nameRU.toLowerCase().includes(request.toLowerCase()) ||
-        movie.nameEN.toLowerCase().includes(request.toLowerCase())
-      );
-    });
-    setFilteredMovies(result);
-    handleNotFoundMessage(result);
-    localStorage.setItem("movies", JSON.stringify(result));
+    const filteredMovies = onFilter(arr, request);
+    setFilteredMovies(filteredMovies);
+    handleNotFoundMessage(filteredMovies);
+    localStorage.setItem("movies", JSON.stringify(filteredMovies));
   }
 
   function handleNotFoundMessage(result) {

@@ -210,6 +210,7 @@ function App() {
                   onSaveMovie={handleSaveMovie}
                   onDeleteMovie={handleDeleteMovie}
                   userMovies={userMovies}
+                  onFilter={handleFilter}
                 />
               }
             />
