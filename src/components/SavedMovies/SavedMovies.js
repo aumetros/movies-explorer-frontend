@@ -5,7 +5,7 @@ import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React from "react";
 
-function SavedMovies({ onOpenModal, userMovies, onServerResponse }) {
+function SavedMovies({ onOpenModal, userMovies, onServerResponse, onDeleteMovie }) {
   const [isSavedMovies, setIsSavedMovies] = React.useState(false);
 
   React.useEffect(() => {
@@ -29,6 +29,7 @@ function SavedMovies({ onOpenModal, userMovies, onServerResponse }) {
           onErrorServer={onServerResponse}
           onNotFound={isSavedMovies}
           isShowed={isSavedMovies}
+          onDeleteMovie={onDeleteMovie}
         />
       </main>
       <Footer />

@@ -23,6 +23,10 @@ function MoviesCard({
     }
   }
 
+  function handleDeleteClick() {
+    onDeleteMovie(movie._id);
+  }
+
   React.useEffect(() => {
     if (!savedMovies) {
       const hasMovieSaved = userMovies.some((saved) => {
@@ -48,7 +52,7 @@ function MoviesCard({
         ></button>
       );
     } else {
-      return <button type="button" className="movie-card__delete-btn"></button>;
+      return <button type="button" className="movie-card__delete-btn" onClick={handleDeleteClick}></button>;
     }
   }
 
@@ -70,7 +74,11 @@ function MoviesCard({
       >
         <img
           className="movie-card__photo"
-          src={savedMovies ? movie.image : `https://api.nomoreparties.co${movie.image.url}`}
+          src={
+            savedMovies
+              ? movie.image
+              : `https://api.nomoreparties.co${movie.image.url}`
+          }
           alt={movie.nameRU}
         />
       </a>

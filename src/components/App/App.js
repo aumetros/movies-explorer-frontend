@@ -213,6 +213,7 @@ function App() {
                   onOpenModal={handleOpenModal}
                   userMovies={userMovies}
                   onServerResponse={isServerResponse}
+                  onDeleteMovie={handleDeleteMovie}
                 />
               }
             />
