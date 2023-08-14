@@ -10,11 +10,16 @@
 
 HTML5, Flexbox, Grid layout, CSS3, React.js, React Router, JSX
 
+**Деплой проекта на сервере**
+(https://aumetrosdiploma.nomoredomains.xyz)
+
 **Ссылка на файл проекта Figma**
 (https://disk.yandex.ru/d/MlEWuzy8gmZJ2Q)
 
-**Временно без авторизации - авторизированная часть доступна по роуту**
-(http://localhost:3000/movies)
+**Ссылка на пул реквест level-3**
+(https://github.com/aumetros/movies-explorer-frontend/pull/2)
+
+
 
 
 _июль 2023г_
