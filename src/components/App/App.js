@@ -38,10 +38,7 @@ function App() {
       .register(email, password, name)
       .then((res) => {
         if (res._id) {
-          setIsLoggedIn(true);
-          setCurrentUser(res);
-          localStorage.setItem("user", res._id);
-          navigate("/movies", { replace: true });
+          handleLoginSubmit(email, password);
         }
       })
       .catch((err) => {
