@@ -2,7 +2,7 @@ import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 import React from "react";
 
-function SearchForm({ onSubmit, onError, onShorts }) {
+function SearchForm({ onSubmit, onError, onShorts, savedMovies }) {
   const [value, setValue] = React.useState('');
 
   function handleChange(event) {
@@ -20,10 +20,10 @@ function SearchForm({ onSubmit, onError, onShorts }) {
   }
 
   React.useEffect(() => {
-    if (localStorage.getItem("request")) {
+    if (!savedMovies && localStorage.getItem("request")) {
       setValue(localStorage.getItem("request"));
     }
-  }, [])
+  }, [savedMovies])
 
   return (
     <section>
@@ -46,7 +46,7 @@ function SearchForm({ onSubmit, onError, onShorts }) {
           </div>
           <div className="search-form__vertical-line"></div>
           <div className="search-form__shorts-container">
-            <FilterCheckbox onChange={onShorts} />
+            <FilterCheckbox onChange={onShorts} savedMovies={savedMovies}/>
             <span className="search-form__shorts-text">Короткометражки</span>
           </div>
         </div>

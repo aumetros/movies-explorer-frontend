@@ -135,6 +135,16 @@ function App() {
       });
   }
 
+  function handleFilter(arr, request) {
+    const result = arr.filter((movie) => {
+      return (
+        movie.nameRU.toLowerCase().includes(request.toLowerCase()) ||
+        movie.nameEN.toLowerCase().includes(request.toLowerCase())
+      );
+    });
+    return result;
+  }
+
   React.useEffect(() => {
     if (localStorage.getItem("user")) {
       mainApi
@@ -213,6 +223,7 @@ function App() {
                   userMovies={userMovies}
                   onServerResponse={isServerResponse}
                   onDeleteMovie={handleDeleteMovie}
+                  onFilter={handleFilter}
                 />
               }
             />

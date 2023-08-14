@@ -1,7 +1,7 @@
 import React from "react";
 import "./FilterCheckbox.css";
 
-function FilterCheckbox({ onChange }) {
+function FilterCheckbox({ onChange, savedMovies }) {
   const [isChecked, setIsChecked] = React.useState(true);
 
   function handleCheckShorts() {
@@ -10,10 +10,10 @@ function FilterCheckbox({ onChange }) {
   }
 
   React.useEffect(() => {
-    if (localStorage.getItem("shorts")) {
+    if (!savedMovies && localStorage.getItem("shorts")) {
       setIsChecked(localStorage.getItem("shorts") === "true");
     }
-  }, []);
+  }, [savedMovies]);
 
   return (
     <label className="filter-checkbox__label" htmlFor="shorts">

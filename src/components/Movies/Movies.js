@@ -71,7 +71,7 @@ function Movies({ onOpenModal, onSaveMovie, userMovies, onDeleteMovie }) {
       handleNotFoundMessage(filteredMovies);
     } else {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration < 60;
+        return movie.duration > 60;
       });
       setRenderMovies(moviesLongplay);
       handleNotFoundMessage(moviesLongplay);

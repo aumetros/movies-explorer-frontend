@@ -16,7 +16,7 @@
   grid-template-columns: repeat(auto-fit, 270px);
   row-gap: 32px;
   column-gap: 20px;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .movies-cardlist__container_saved {
