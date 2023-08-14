@@ -14,7 +14,7 @@ function SavedMovies({
 }) {
   const [isSavedMovies, setIsSavedMovies] = React.useState(false);
   const [renderMovies, setRenderMovies] = React.useState([]);
-  const [isShortsChecked, setIsShortsCheked] = React.useState(true);
+  const [isShortsChecked, setIsShortsCheked] = React.useState(false);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [isSearched, setIsSearched] = React.useState(false);
 
@@ -53,21 +53,21 @@ function SavedMovies({
       setRenderMovies(filteredMovies);
     } else if (isSearched && isShortsChecked && filteredMovies.length !== 0) {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 40;
+        return movie.duration < 40;
       });
       setRenderMovies(moviesLongplay);
     } else if (!isSearched && !isShortsChecked && filteredMovies.length === 0) {
       setRenderMovies(userMovies);
     } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
       const moviesLongplay = userMovies.filter((movie) => {
-        return movie.duration > 40;
+        return movie.duration < 40;
       });
       setRenderMovies(moviesLongplay);
     } else if (isSearched && !isShortsChecked && filteredMovies.length === 0) {
       setRenderMovies(filteredMovies);
     } else if (isSearched && isShortsChecked && filteredMovies.length === 0) {
       const moviesLongplay = filteredMovies.filter((movie) => {
-        return movie.duration > 40;
+        return movie.duration < 40;
       });
       setRenderMovies(moviesLongplay);
     }
