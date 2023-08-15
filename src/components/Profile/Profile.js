@@ -20,7 +20,7 @@ function Profile({ onSubmit, onLogout }) {
   const isEditNameInvalid = Object.values(errors.editName).some(Boolean);
   const isEditEmailInvalid = Object.values(errors.editEmail).some(Boolean);
 
-  const isValuesDublicate = isNameDublicate || isEmailDublicate;
+  const isValuesDublicate = isNameDublicate && isEmailDublicate;
 
   const isFormInvalid =
     isEditNameInvalid || isEditEmailInvalid || isValuesDublicate;
@@ -32,12 +32,12 @@ function Profile({ onSubmit, onLogout }) {
 
   const editNameClassName = `profile__input ${
     visibilityValidate.editName &&
-    (isEditNameInvalid || isNameDublicate) &&
+    isValuesDublicate &&
     "profile__input_invalid"
   }`;
   const editEmailClassName = `profile__input ${
     visibilityValidate.editEmail &&
-    (isEditEmailInvalid || isEmailDublicate) &&
+    isValuesDublicate &&
     "profile__input_invalid"
   }`;
 
@@ -59,7 +59,7 @@ function Profile({ onSubmit, onLogout }) {
     if (visibilityValidate.editName) {
       return (
         <>
-          {isNameDublicate && "Такое имя у вас уже есть."}
+          {isValuesDublicate && "Данные полностью совпадают с зарегистрированными."}
           {errors.editName.required &&
             errors.editName.minLenght &&
             "Заполните это поле."}
@@ -93,7 +93,7 @@ function Profile({ onSubmit, onLogout }) {
     if (visibilityValidate.editEmail) {
       return (
         <>
-          {isEmailDublicate && "Такой email у вас уже есть."}
+          {isValuesDublicate && "Данные полностью совпадают с зарегистрированными."}
           {errors.editEmail.required &&
             errors.editEmail.email &&
             "Заполните это поле."}
