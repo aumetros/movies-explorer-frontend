@@ -37,13 +37,16 @@ function MoviesCardList({
   }, []);
 
   React.useEffect(() => {
-    if (width > 768) {
+    if (width === 1280) {
       setMoviesPerPage(16);
       setMoviesPerLoad(4);
-    } else if (width <= 768 && width > 480) {
+    } else if (width < 1280 && width >= 990) {
+      setMoviesPerPage(12);
+      setMoviesPerLoad(3);
+    } else if (width < 990 && width >= 768) {
       setMoviesPerPage(8);
       setMoviesPerLoad(2);
-    } else if (width <= 480) {
+    } else if (width < 768) {
       setMoviesPerPage(5);
       setMoviesPerLoad(2);
     }
