@@ -1,3 +1,5 @@
+import { regEmail, regName } from "./constants";
+
 export const validators = {
   registerName: {
     required: (value) => {
@@ -10,7 +12,7 @@ export const validators = {
       return value.length > 30;
     },
     validity: (value) => {
-      const regex = new RegExp(/[^a-zа-яё -]/iu);
+      const regex = new RegExp(regName);
       return regex.test(value);
     },
   },
@@ -19,7 +21,7 @@ export const validators = {
       return value === "";
     },
     email: (value) => {
-      const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+      const regex = new RegExp(regEmail);
       return !regex.test(value);
     },
   },
@@ -33,7 +35,7 @@ export const validators = {
       return value === "";
     },
     email: (value) => {
-      const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+      const regex = new RegExp(regEmail);
       return !regex.test(value);
     },
   },  
@@ -53,7 +55,7 @@ export const validators = {
       return value.length > 30;
     },
     validity: (value) => {
-      const regex = new RegExp(/[^a-zа-яё -]/iu);
+      const regex = new RegExp(regName);
       return regex.test(value);
     },
   },
@@ -62,7 +64,7 @@ export const validators = {
       return value === "";
     },
     email: (value) => {
-      const regex = new RegExp(/^[A-Z0-9._%+-]+@[A-Z0-9-]+.+.[A-Z]{2,4}$/i);
+      const regex = new RegExp(regEmail);
       return !regex.test(value);
     },
   },
