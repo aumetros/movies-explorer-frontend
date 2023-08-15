@@ -50,7 +50,8 @@ function MoviesCardList({
       setMoviesPerPage(5);
       setMoviesPerLoad(2);
     }
-  }, [width]);
+    setWidth(window.innerWidth);
+  }, [movies, width]);
 
   React.useEffect(() => {
     if (movies.length <= moviesPerPage) {
@@ -100,7 +101,7 @@ function MoviesCardList({
         })}
       </ul>
       <div className="movie-cardlist__loader">
-        {isShowMore &&  (
+        {isShowMore && (
           <button
             type="button"
             className="movie-cardlist__loader-btn"
