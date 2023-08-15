@@ -15,7 +15,7 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Modal from "../Modal/Modal";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(true);
   const [currentUser, setCurrentUser] = React.useState({});
   const [isOpenModal, setIsOpenModal] = React.useState(false);
   const [modalMessage, setModalMessage] = React.useState("");
@@ -45,7 +45,9 @@ function App() {
         console.log(`Ошибка: ${err}`);
         err === 409
           ? handleOpenModal("Пользователь с таким email уже существует.")
-          : handleOpenModal("Что-то пошло не так. Попробуйте зарегистрироваться позже.");
+          : handleOpenModal(
+              "Что-то пошло не так. Попробуйте зарегистрироваться позже."
+            );
       });
   }
 
@@ -153,9 +155,12 @@ function App() {
           }
         })
         .catch((err) => {
+          setIsLoggedIn(false);
           localStorage.removeItem("user");
           console.log(`Ошибка: ${err}`);
         });
+    } else {
+      setIsLoggedIn(false);
     }
   }, []);
 
