@@ -52,10 +52,10 @@ function MoviesCardList({
   React.useEffect(() => {
     if (movies.length <= moviesPerPage) {
       setIsShowMore(false);
-    } else {
+    } else if (movies.length > moviesPerPage && !savedMovies) {
       setIsShowMore(true);
     }
-  }, [movies.length, moviesPerPage]);
+  }, [movies.length, moviesPerPage, savedMovies]);
 
   if (onLoading) {
     return <Preloader />;
@@ -97,7 +97,7 @@ function MoviesCardList({
         })}
       </ul>
       <div className="movie-cardlist__loader">
-        {isShowMore && (
+        {isShowMore &&  (
           <button
             type="button"
             className="movie-cardlist__loader-btn"
