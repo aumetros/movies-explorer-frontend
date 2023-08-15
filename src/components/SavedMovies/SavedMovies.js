@@ -4,6 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Footer from "../Footer/Footer";
 import React from "react";
+import { SHORT_DUR } from "../../utils/constants";
 
 function SavedMovies({
   onOpenModal,
@@ -46,14 +47,14 @@ function SavedMovies({
       setRenderMovies(userMovies);
     } else if (!isSearched && isShortsChecked && filteredMovies.length === 0) {
       const shorts = userMovies.filter((movie) => {
-        return movie.duration < 40;
+        return movie.duration < SHORT_DUR;
       });
       setRenderMovies(shorts);
     } else if (isSearched && !isShortsChecked && filteredMovies.length !== 0) {
       setRenderMovies(filteredMovies);
     } else if (isSearched && isShortsChecked && filteredMovies.length !== 0) {
       const shorts = filteredMovies.filter((movie) => {
-        return movie.duration < 40;
+        return movie.duration < SHORT_DUR;
       });
       setRenderMovies(shorts);
     } else {

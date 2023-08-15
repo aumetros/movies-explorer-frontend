@@ -5,6 +5,7 @@ import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import React from "react";
 import { getMovies } from "../../utils/MoviesApi";
+import { SHORT_DUR } from "../../utils/constants";
 
 function Movies({
   onOpenModal,
@@ -72,7 +73,7 @@ function Movies({
       handleNotFoundMessage(filteredMovies);
     } else {
       const shorts = filteredMovies.filter((movie) => {
-        return movie.duration < 40;
+        return movie.duration < SHORT_DUR;
       });
       setRenderMovies(shorts);
       handleNotFoundMessage(shorts);
