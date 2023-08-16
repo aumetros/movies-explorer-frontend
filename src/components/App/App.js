@@ -21,6 +21,7 @@ function App() {
   const [modalMessage, setModalMessage] = React.useState("");
   const [userMovies, setUserMovies] = React.useState([]);
   const [isServerResponse, setIsServerResponse] = React.useState(true);
+  const [isGetUserMovies, setIsGetUserMovies] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -151,21 +152,24 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
+            setIsGetUserMovies(true);
             setCurrentUser(res.data);
           }
         })
         .catch((err) => {
           setIsLoggedIn(false);
+          setIsGetUserMovies(false);
           localStorage.removeItem("user");
           console.log(`Ошибка: ${err}`);
         });
     } else {
       setIsLoggedIn(false);
+      setIsGetUserMovies(false);
     }
   }, []);
 
   React.useEffect(() => {
-    if (isLoggedIn) {
+    if (isGetUserMovies) {
       mainApi
         .getUserMovies()
         .then((res) => {
@@ -179,7 +183,7 @@ function App() {
           console.log(`Ошибка: ${err}`);
         });
     }
-  }, [isLoggedIn]);
+  }, [isGetUserMovies]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
