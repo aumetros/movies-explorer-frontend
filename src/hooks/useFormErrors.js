@@ -6,6 +6,7 @@ export function useFormErrors() {
       required: true,
       minLenght: true,
       maxLength: true,
+      validity: true,
     },
     registerEmail: {
       required: true,
@@ -20,6 +21,16 @@ export function useFormErrors() {
     },
     loginPassword: {
       required: true,
+    },
+    editName: {
+      required: true,
+      minLenght: true,
+      maxLength: true,
+      validity: true,
+    },
+    editEmail: {
+      required: true,
+      email: true,
     },
   });
 

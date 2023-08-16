@@ -13,6 +13,11 @@
   width: 270px;
   height: 151px;
   object-fit: cover;
+  cursor: pointer;
+}
+
+.movie-card__photo:hover {
+  opacity: 0.9;
 }
 
 .movie-card__container {
@@ -22,6 +27,7 @@
 }
 
 .movie-card__title {
+  max-width: 206px;
   margin: 0;
   font-size: 13px;
   font-weight: 500;
@@ -86,7 +92,7 @@
 }
 
 .movie-card__delete-btn:hover {
-  opacity: 0.8;
+  opacity: 0.6;
 }
 
 @media screen and (max-width: 768px) {

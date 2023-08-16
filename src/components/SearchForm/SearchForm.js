@@ -1,22 +1,29 @@
 import "./SearchForm.css";
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-import { useForm } from "../../hooks/UseForm";
 import React from "react";
 
-function SearchForm() {
-  const { values, handleChange } = useForm();
-  const [isShortsChecked, setIsShortsChecked] = React.useState(true);
+function SearchForm({ onSubmit, onError, onShorts, savedMovies }) {
+  const [value, setValue] = React.useState('');
 
-  function handleChangeShorts() {
-    setIsShortsChecked(!isShortsChecked);
+  function handleChange(event) {
+    setValue(event.target.value);
   }
 
   function handleSearchSubmit(event) {
     event.preventDefault();
-    console.log(values.search);
-    console.log(isShortsChecked);
-    event.target.reset();
+    if (value) {
+      onSubmit(value);
+     
+    } else {
+      onError("Нужно ввести ключевое слово");
+    }
   }
+
+  React.useEffect(() => {
+    if (!savedMovies && localStorage.getItem("request")) {
+      setValue(localStorage.getItem("request"));
+    }
+  }, [savedMovies])
 
   return (
     <section>
@@ -28,10 +35,10 @@ function SearchForm() {
               type="text"
               className="search-form__input"
               placeholder="Фильм"
-              name="search"
-              value={values.name}
+              name="searchMovies"
+              value={value}
               onChange={handleChange}
-              required
+              noValidate
             />
             <button type="submit" className="search-form__button-submit">
               Найти
@@ -39,7 +46,7 @@ function SearchForm() {
           </div>
           <div className="search-form__vertical-line"></div>
           <div className="search-form__shorts-container">
-            <FilterCheckbox onChange={handleChangeShorts}/>
+            <FilterCheckbox onChange={onShorts} savedMovies={savedMovies}/>
             <span className="search-form__shorts-text">Короткометражки</span>
           </div>
         </div>

@@ -3,48 +3,110 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import Footer from "../Footer/Footer";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
-import MoviesCard from "../MoviesCard/MoviesCard";
-import photo1 from "../../images/card-photo-1.png";
-import photo2 from "../../images/card-photo-2.png";
-import photo3 from "../../images/card-photo-3.png";
-import photo4 from "../../images/card-photo-4.png";
-import photo5 from "../../images/card-photo-5.png";
-import photo6 from "../../images/card-photo-6.png";
-import photo7 from "../../images/card-photo-7.png";
-import photo8 from "../../images/card-photo-8.png";
-import photo9 from "../../images/card-photo-9.png";
-import photo10 from "../../images/card-photo-10.png";
-import photo11 from "../../images/card-photo-11.png";
-import photo12 from "../../images/card-photo-12.png";
-import photo13 from "../../images/card-photo-13.png";
-import photo14 from "../../images/card-photo-14.png";
-import photo15 from "../../images/card-photo-15.png";
-import photo16 from "../../images/card-photo-16.png";
+import React from "react";
+import { getMovies } from "../../utils/MoviesApi";
+import { SHORT_DUR } from "../../utils/constants";
 
-function Movies() {
+function Movies({
+  onOpenModal,
+  onSaveMovie,
+  userMovies,
+  onDeleteMovie,
+  onFilter,
+}) {
+  const [isShortsChecked, setIsShortsCheked] = React.useState(false);
+  const [renderMovies, setRenderMovies] = React.useState([]);
+  const [movies, setMovies] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [isServerResponse, setIsServerResponse] = React.useState(true);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [isMoviesFound, setIsMoviesFound] = React.useState(true);
+  const [isMovieCardListShow, setIsMovieCardListShow] = React.useState(false);
+
+  function handleSearchMovies(request) {
+    localStorage.setItem("request", request);
+    localStorage.setItem("shorts", isShortsChecked);
+    if (movies.length === 0) {
+      setIsMovieCardListShow(true);
+      setIsLoading(true);
+      getMovies()
+        .then((movies) => {
+          setMovies(movies);
+          setIsServerResponse(true);
+          handleFilter(movies, request);
+        })
+        .catch((err) => {
+          console.log(err);
+          setIsServerResponse(false);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      handleFilter(movies, request);
+    }
+  }
+
+  function handleFilter(arr, request) {
+    const filteredMovies = onFilter(arr, request);
+    setFilteredMovies(filteredMovies);
+    handleNotFoundMessage(filteredMovies);
+    localStorage.setItem("movies", JSON.stringify(filteredMovies));
+  }
+
+  function handleNotFoundMessage(result) {
+    if (result.length === 0) {
+      setIsMoviesFound(false);
+    } else {
+      setIsMoviesFound(true);
+    }
+  }
+
+  function handleCheckShorts(status) {
+    localStorage.setItem("shorts", status);
+    setIsShortsCheked(status);
+  }
+
+  React.useEffect(() => {
+    if (!isShortsChecked) {
+      setRenderMovies(filteredMovies);
+      handleNotFoundMessage(filteredMovies);
+    } else {
+      const shorts = filteredMovies.filter((movie) => {
+        return movie.duration < SHORT_DUR;
+      });
+      setRenderMovies(shorts);
+      handleNotFoundMessage(shorts);
+    }
+  }, [filteredMovies, isShortsChecked]);
+
+  React.useEffect(() => {
+    if (localStorage.getItem("movies")) {
+      setFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+      setIsShortsCheked(localStorage.getItem("shorts") === "true");
+      setIsMovieCardListShow(true);
+    }
+  }, []);
+
   return (
     <section className="movies">
       <Header />
       <main>
-        <SearchForm />
-        <MoviesCardList>
-          <MoviesCard photo={photo1} />
-          <MoviesCard photo={photo2} />
-          <MoviesCard photo={photo3} />
-          <MoviesCard photo={photo4} />
-          <MoviesCard photo={photo5} />
-          <MoviesCard photo={photo6} mob={"hide"} />
-          <MoviesCard photo={photo7} mob={"hide"} />
-          <MoviesCard photo={photo8} mob={"hide"} />
-          <MoviesCard photo={photo9} tab={"hide"} />
-          <MoviesCard photo={photo10} tab={"hide"} />
-          <MoviesCard photo={photo11} tab={"hide"} />
-          <MoviesCard photo={photo12} tab={"hide"} />
-          <MoviesCard photo={photo13} tab={"hide"} />
-          <MoviesCard photo={photo14} tab={"hide"} />
-          <MoviesCard photo={photo15} tab={"hide"} />
-          <MoviesCard photo={photo16} tab={"hide"} />
-        </MoviesCardList>
+        <SearchForm
+          onSubmit={handleSearchMovies}
+          onError={onOpenModal}
+          onShorts={handleCheckShorts}
+        />
+        <MoviesCardList
+          movies={renderMovies}
+          onLoading={isLoading}
+          onErrorServer={isServerResponse}
+          onNotFound={isMoviesFound}
+          isShowed={isMovieCardListShow}
+          onSaveMovie={onSaveMovie}
+          onDeleteMovie={onDeleteMovie}
+          userMovies={userMovies}
+        />
       </main>
       <Footer movies={true} />
     </section>

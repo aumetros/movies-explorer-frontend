@@ -41,10 +41,6 @@
   cursor: pointer;
 }
 
-.form__submit_disabled {
-  background-color: #a8a7a7;
-}
-
 .form__submit_logged {
   min-width: 410px;
   border: 0;
@@ -57,8 +53,16 @@
   cursor: pointer;
 }
 
+.form__submit_disabled {
+  opacity: 0.5;
+}
+
 .form__submit:hover {
   opacity: 0.8;
+}
+
+.form__submit_disabled:hover {
+  opacity: 0.5;
 }
 
 @media screen and (max-width: 768px) {

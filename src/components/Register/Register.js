@@ -1,14 +1,17 @@
 import "./Register.css";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import Form from "../Form/Form";
 import { Link } from "react-router-dom";
 import { useForm } from "../../hooks/UseForm";
 import { useValidation } from "../../hooks/useValidation";
 import { useFormErrors } from "../../hooks/useFormErrors";
 
-function Register() {
+function Register({ onSubmit, loggedIn }) {
   const { values, handleChange, setValues } = useForm();
   const { errors, setErrors } = useFormErrors();
+
+  const navigate = useNavigate();
 
   const registerNameResult = useValidation(values.registerName, "registerName");
   const registerEmailResult = useValidation(
@@ -64,6 +67,12 @@ function Register() {
   }
 
   React.useEffect(() => {
+    if (loggedIn) {
+      navigate("/movies", { replace: true });
+    }
+  }, [loggedIn, navigate]);
+
+  React.useEffect(() => {
     setErrors({
       registerName: registerNameResult,
       registerEmail: registerEmailResult,
@@ -93,8 +102,24 @@ function Register() {
             "Заполните это поле."}
           {!errors.registerName.required &&
             errors.registerName.minLenght &&
+            !errors.registerName.validity &&
             "В имени должно быть больше 2 символов."}
+          {!errors.registerName.required &&
+            errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            "Имя содержит недопустимые символы."}
+          {!errors.registerName.required &&
+            !errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            !errors.registerName.maxLength &&
+            "Имя содержит недопустимые символы."}
+          {!errors.registerName.required &&
+            !errors.registerName.minLenght &&
+            errors.registerName.validity &&
+            errors.registerName.maxLength &&
+            "Имя содержит недопустимые символы."}
           {errors.registerName.maxLength &&
+            !errors.registerName.validity &&
             "В имени не должно быть больше 30 символов."}
         </>
       );
@@ -124,10 +149,16 @@ function Register() {
 
   function handleRegister(event) {
     event.preventDefault();
-    console.log(values.registerName);
-    console.log(values.registerEmail);
-    console.log(values.registerPassword);
-    event.target.reset();
+    onSubmit(
+      values.registerEmail,
+      values.registerPassword,
+      values.registerName
+    );
+    setVisibilityValidate({
+      registerName: false,
+      registerEmail: false,
+      registerPassword: false,
+    });
   }
 
   return (
