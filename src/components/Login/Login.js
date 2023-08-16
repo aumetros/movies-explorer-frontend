@@ -77,14 +77,9 @@ function Login({ onSubmit, loggedIn }) {
   function handleLogin(event) {
     event.preventDefault();
     onSubmit(values.loginEmail, values.loginPassword);
-    event.target.reset();
     setVisibilityValidate({
       loginEmail: false,
       loginPassword: false,
-    });
-    setValues({
-      loginEmail: "",
-      loginPassword: "",
     });
   }
 

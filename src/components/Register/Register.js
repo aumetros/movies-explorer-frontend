@@ -154,16 +154,10 @@ function Register({ onSubmit, loggedIn }) {
       values.registerPassword,
       values.registerName
     );
-    event.target.reset();
     setVisibilityValidate({
       registerName: false,
       registerEmail: false,
       registerPassword: false,
-    });
-    setValues({
-      registerName: "",
-      registerEmail: "",
-      registerPassword: "",
     });
   }
 
