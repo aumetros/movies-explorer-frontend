@@ -21,7 +21,6 @@ function App() {
   const [modalMessage, setModalMessage] = React.useState("");
   const [userMovies, setUserMovies] = React.useState([]);
   const [isServerResponse, setIsServerResponse] = React.useState(true);
-  const [isGetUserMovies, setIsGetUserMovies] = React.useState(false);
 
   const navigate = useNavigate();
 
@@ -52,6 +51,21 @@ function App() {
       });
   }
 
+  function getUserMovies() {
+    mainApi
+      .getUserMovies()
+      .then((res) => {
+        if (res.data) {
+          setUserMovies(res.data);
+          setIsServerResponse(true);
+        }
+      })
+      .catch((err) => {
+        setIsServerResponse(false);
+        console.log(`Ошибка: ${err}`);
+      });
+  }
+
   function handleLoginSubmit(email, password) {
     mainApi
       .login(email, password)
@@ -60,6 +74,7 @@ function App() {
           setIsLoggedIn(true);
           setCurrentUser(res);
           localStorage.setItem("user", res._id);
+          getUserMovies();
           navigate("/movies", { replace: true });
         }
       })
@@ -152,38 +167,20 @@ function App() {
         .then((res) => {
           if (res) {
             setIsLoggedIn(true);
-            setIsGetUserMovies(true);
+
             setCurrentUser(res.data);
           }
         })
         .catch((err) => {
           setIsLoggedIn(false);
-          setIsGetUserMovies(false);
+
           localStorage.removeItem("user");
           console.log(`Ошибка: ${err}`);
         });
     } else {
       setIsLoggedIn(false);
-      setIsGetUserMovies(false);
     }
   }, []);
-
-  React.useEffect(() => {
-    if (isGetUserMovies) {
-      mainApi
-        .getUserMovies()
-        .then((res) => {
-          if (res.data) {
-            setUserMovies(res.data);
-            setIsServerResponse(true);
-          }
-        })
-        .catch((err) => {
-          setIsServerResponse(false);
-          console.log(`Ошибка: ${err}`);
-        });
-    }
-  }, [isGetUserMovies]);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
