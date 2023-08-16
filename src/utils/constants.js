@@ -6,7 +6,7 @@ const regEmail =
 const regName = /[^a-zа-яё -]/iu;
 
 /**Константы параметров */
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://api.aumetrosdiploma.nomoredomains.xyz";
 
 const SHORT_DUR = 40;
 
