@@ -10,18 +10,14 @@
 
 HTML5, Flexbox, Grid layout, CSS3, React.js, React Router, JSX
 
+**Описание примененных методов**
+- Адаптивная верстка. Верстка мобильной версии с использованием "бургерного" меню.
+- - В качестве инфраструктуры проекта используется CRA.
+
 **Деплой проекта на сервере**
 (https://aumetrosdiploma.nomoredomains.xyz)
 
-**Ссылка на файл проекта Figma**
-(https://disk.yandex.ru/d/MlEWuzy8gmZJ2Q)
 
-**Ссылка на пул реквест level-3**
-(https://github.com/aumetros/movies-explorer-frontend/pull/2)
-
-
-
-
-_июль 2023г_
+_август 2023г_
 
 
